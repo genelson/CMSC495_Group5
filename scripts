@@ -16,3 +16,23 @@ The hold on account is either a 1 or a 0 for true or false.  It doesn't matter, 
 
 insert into rental (cust_id, date_out, movie_id, late_fees_paid)
 values ('1', date '2013-09-01','1','5.25');
+
+Below are the search and delete scripts.  I noticed in the Interface control 2.4.1 the requirment is for the user to
+all the required information in the search page.  There would be no reason to search if that were the case.  I have
+built the basic one piece options.  I can create any number of combinations such as type (adventure) and rating (pg)
+that you would like, but think that maybe the front end would be easier with a search by screen that uses the scripts.
+
+The variables must match the type of data in the database.  Right now there are no directors listed for any of the 
+movies.
+
+This should let everyone start and I will finish when I get off work.
+select  last_name, first_name from customer where cust_id = 'variable';
+select cust_id, last_name, first_name, phone from customer where last_name = 'variable';
+select * from movie; 
+select movie_id, title from movie where type = 'variable';
+select movie_id, title from movie where rating = 'variable';
+select movie_id, title from movie where length = 'variable';
+select movie_id, title from movie where year_released = 'variable';
+select movie_id, title from movie where director = 'variable';
+delete from customer where cust_id ='variable';
+delete from movie where movie_id ='variable'
