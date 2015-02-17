@@ -39,3 +39,5 @@ delete from movie where movie_id ='variable';
 
 update customer set last_name = 'new value' where cust_id = 'variable';
 update customer set phone = 'new value' where cust_id ='variable';
+
+update movie set *field* = 'new value' where *field* = 'variable';
