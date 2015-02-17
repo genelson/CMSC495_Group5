@@ -36,3 +36,6 @@ select movie_id, title from movie where year_released = 'variable';
 select movie_id, title from movie where director = 'variable';
 delete from customer where cust_id ='variable';
 delete from movie where movie_id ='variable';
+
+update customer set last_name = 'new value' where cust_id = 'variable';
+update customer set phone = 'new value' where cust_id ='variable';
