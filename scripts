@@ -35,4 +35,4 @@ select movie_id, title from movie where length = 'variable';
 select movie_id, title from movie where year_released = 'variable';
 select movie_id, title from movie where director = 'variable';
 delete from customer where cust_id ='variable';
-delete from movie where movie_id ='variable'
+delete from movie where movie_id ='variable';
