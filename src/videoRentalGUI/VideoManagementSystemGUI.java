@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package videoRentalGUI;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author Larry
@@ -18,6 +18,11 @@ public class VideoManagementSystemGUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    public static void errorBox(String theMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, theMessage, "ERROR: " + titleBar, JOptionPane.ERROR_MESSAGE);
+        
+    }
     /**
      * 
      * 
@@ -874,7 +879,8 @@ public class VideoManagementSystemGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_transactionsCheckInButtonActionPerformed
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-        // TODO add your handling code here:
+        // Testing error popup
+        errorBox("But it could be worse", "This error sucks ass");
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void queryCustomerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerSearchButtonActionPerformed
