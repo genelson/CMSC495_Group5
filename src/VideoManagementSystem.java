@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import videoRentalGUI.VideoManagementSystemGUI;
 
 /*
  * VideoManagementSystem
@@ -12,6 +11,7 @@ import videoRentalGUI.VideoManagementSystemGUI;
 public class VideoManagementSystem 
 {   
     private static DatabaseManager m_databaseManager = null;
+        
     
     /**
      * @param args the command line arguments
@@ -65,7 +65,132 @@ public class VideoManagementSystem
         //runTests(); //TODO - remove before final submission
     }
     
-    private static void runTests()
+    
+    ///////////////////////////////////////////////////////////////////
+    // START GUI FUNCTIONS
+    //
+    // Functions for the GUI to be able to access.
+    // These are for the button actions and
+    // for the lists/drop down menus
+    //
+    //
+    ///////////////////////////////////////////////////////////////////
+    
+    public static void addCustomers(String firstName,
+            String lastName,
+            String streetAddress,
+            String theCity,
+            String theState,
+            String theZipcode,
+            String phoneNumber)
+    {
+        
+        //Function for the add customer button. This should add a customer from the filled out fields
+        
+        DatabaseManager.DbResult resultCustomerAddOk = m_databaseManager.addCustomer(firstName, lastName, streetAddress, theCity, theState, theZipcode, phoneNumber);
+        
+        if(resultCustomerAddOk != DatabaseManager.DbResult.DB_OK)
+        {
+            // A error
+            VideoManagementSystemGUI.errorBox("Look into VideoManagementSystem.addCustomers()", "Some type of add user failsauce");
+            
+        } 
+        
+        else {
+            VideoManagementSystemGUI.infoBox(firstName + " " + lastName + " Added sucessfully!", "Sucessfull");
+        }
+              
+    }
+    
+    public static void removeCustomers(String customerName, String customerID) {
+        // Method still broken needs work.
+        Customer originalCustomer = null;
+        // Need this statement corrected. Not sure how to insert ID number.
+        DatabaseManager.DbResult resultCustomerRemove = m_databaseManager.removeCustomer(originalCustomer.m_id);
+        if(resultCustomerRemove != DatabaseManager.DbResult.DB_OK)
+        {
+            //System.out.println("    Customer Edit Error: This customer doesn't exist or has rentals out/latefees.");
+            VideoManagementSystemGUI.errorBox("Look into VideoManagementSystem.removeCustomers()", "Some type of remove user failsauce");
+        }
+        else
+        {
+            //System.out.println("    Customer successfully removed.");
+            VideoManagementSystemGUI.infoBox( customerName + " Removed sucessfully!", "Sucessfull");
+        }
+    }
+    
+    public static void queryCustomers(String lastName, String firstName, int ID) {
+        // I need this function to return a array list in the Format of "Name, ID" that I can have 
+        // in the VideoManagementSystemGUI.java...
+        // that way I can put the arraylist in the dropdown in the GUI, then when you click "remove"
+        // It should grab the ID from the drop down and pass it to the removeCustomers function
+        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, ID, lastName, firstName, null);      
+   
+    }
+    
+    public static void addVideo(String title,
+            String type,
+            String rating,
+            String length,
+            String year,
+            String director,
+            int totalNumberOfMovies)
+    {
+        DatabaseManager.DbResult resultVideoAddOk = m_databaseManager.addVideo(title, type, rating, length, year, director, 5);
+        
+        if(resultVideoAddOk != DatabaseManager.DbResult.DB_OK)
+        {
+            //System.out.println("    Video Add Error: Video already exists.");
+            VideoManagementSystemGUI.errorBox("Look into VideoManagementSystem.addVideo()", "Some type of add video failsauce");
+            
+            // Get this video, store it as the original for now (we've likely run this
+            // hard-coded test already and don't want to purge the database to test
+            // the edits below)
+            
+        }
+        else
+        {
+            //System.out.println("    Video successfully added:");
+            VideoManagementSystemGUI.infoBox( title + " added sucessfully!", "Sucessfull");
+        
+        }
+    }
+    
+    public static void removeVideo(String videoName, int videoID)
+    {
+        Video originalVideo = null;
+        
+        // Same issue need a way to pass a movie ID in the database statement below. I should be able to parse
+        // that info from the queryVideo function
+        DatabaseManager.DbResult resultVideoRemove = m_databaseManager.removeVideo(originalVideo.m_id);
+        
+        if(resultVideoRemove != DatabaseManager.DbResult.DB_OK)
+        {
+            //System.out.println("    Video Edit Error: This video doesn't exist or has rentals out.");
+            VideoManagementSystemGUI.errorBox("Look into VideoManagementSystem.removeVideo()", "Some type of remove video failsauce");
+        }
+        else
+        {
+            //System.out.println("    Video successfully removed.");
+            VideoManagementSystemGUI.infoBox( videoName + " removed sucessfully!", "Sucessfull");
+        }
+    }
+    
+    public static void queryVideo(){
+        // Need to get this queryVideo working. 
+        ArrayList<Video> queryVideoAddVerify = m_databaseManager.searchVideos(true, 0, "Charlie and the Chocolate Factory", null, null, null, "2013", null);
+    }
+    
+    ///////////////////////////////////////////////////////////////////
+    // END GUI FUNCTIONS
+    //
+    //
+    //
+    //
+    ///////////////////////////////////////////////////////////////////
+    
+    
+    public static void runTests()
     {        
         //----------------------------------------------------------------------
         // TEST - VIDEO SEARCH
