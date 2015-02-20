@@ -26,13 +26,15 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         initComponents();
         
         // EXAMPLE FOR LARRY (REMOVE WHEN DONE)
+        //ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null); removeCustomerDropDownList
+        removeCustomerDropDownList.removeAllItems();
         ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
         for(Customer customer : queryCustomerTest)
         {
             System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
+            removeCustomerDropDownList.addItem(customer.m_firstName + " " + customer.m_lastName);
         }
-        System.out.println("    END RESULTS");
-        System.out.println("");
+        
         // REMOVE ABOVE CODE WHEN DONE
     }
 
@@ -301,7 +303,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
-        removeCustomerDropDownList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "test1", "test2", "test3" }));
         removeCustomerDropDownList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeCustomerDropDownListActionPerformed(evt);
@@ -911,6 +912,59 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         // Testing error popup
         //errorBox("But it could be worse", "This error sucks ass");
         //runTests();
+        String Lastname = addCustomerLastNameText.getText();
+        String Firstname = addCustomerFirstNameText.getText();
+        String Phone = addCustomerPhoneNumberText.getText();
+        String Street = addCustomerStreetAddressText.getText();
+        String City = addCustomerCityText.getText();
+        String State = addCustomerStateText.getText();
+        String Zip = addCustomerZipText.getText();
+        
+        if (addCustomerLastNameText.getText().length()==0 || addCustomerLastNameText.getText().matches("^[ ]+") ) {
+            errorBox("Please Enter Last Name", "Empty Field");
+        }
+        
+        else if (addCustomerFirstNameText.getText().length()==0 || addCustomerFirstNameText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter First Name", "Empty Field");
+        }
+        
+        else if (addCustomerPhoneNumberText.getText().length()==0 || addCustomerPhoneNumberText.getText().length() != 10 || addCustomerPhoneNumberText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter Phone Number, Remove Hypens, or verify number is 10 digits", "Empty Field");
+        }
+        
+        else if (addCustomerStreetAddressText.getText().length()==0 || addCustomerStreetAddressText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter Street", "Empty Field");
+        }
+        
+        else if (addCustomerCityText.getText().length()==0 || addCustomerCityText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter City", "Empty Field");
+        }
+        
+        else if (addCustomerStateText.getText().length()==0 || addCustomerStateText.getText().length()>2) {
+            errorBox("Please Enter State, or make sure your using 2 letter abbreviation", "Empty Field");
+        }
+        
+        else if (addCustomerZipText.getText().length()==0 || addCustomerZipText.getText().length() != 5 || addCustomerZipText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter Zip Code, or verify zipcode is 5 digits", "Empty Field");
+        }
+                        
+        else {
+        addCustomers(Firstname,
+                Lastname,
+                Street,
+                City,
+                State,
+                Zip,
+                Phone);
+        
+        addCustomerZipText.setText("");
+        addCustomerStateText.setText("");
+        addCustomerCityText.setText("");
+        addCustomerStreetAddressText.setText("");
+        addCustomerPhoneNumberText.setText("");
+        addCustomerFirstNameText.setText("");
+        addCustomerLastNameText.setText("");
+        }
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void queryCustomerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerSearchButtonActionPerformed
