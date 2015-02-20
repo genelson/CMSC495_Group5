@@ -25,6 +25,15 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         m_databaseManager = databaseManager;
         initComponents();
         
+        // EXAMPLE FOR LARRY (REMOVE WHEN DONE)
+        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
+        for(Customer customer : queryCustomerTest)
+        {
+            System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
+        }
+        System.out.println("    END RESULTS");
+        System.out.println("");
+        // REMOVE ABOVE CODE WHEN DONE
     }
 
   //ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
@@ -957,13 +966,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 "Aw3s0m3!",
                 "travin_cmsc495",
                 3306);
-        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
-        for(Customer customer : queryCustomerTest)
-        {
-            System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
-        }
-        System.out.println("    END RESULTS");
-        System.out.println("");
 
         //System.out.println(queryCustomerTest.toArray());
             /* Set the Nimbus look and feel */
