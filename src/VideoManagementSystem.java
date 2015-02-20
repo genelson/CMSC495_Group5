@@ -24,23 +24,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     public VideoManagementSystem(DatabaseManager databaseManager) {
         m_databaseManager = databaseManager;
         initComponents();
+        updateDropDowns();
+        updateMovieDropDowns();
         
-        // EXAMPLE FOR LARRY (REMOVE WHEN DONE)
-        //ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null); removeCustomerDropDownList
-        removeCustomerDropDownList.removeAllItems();
-        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
-        for(Customer customer : queryCustomerTest)
-        {
-            System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
-            removeCustomerDropDownList.addItem(customer.m_firstName + " " + customer.m_lastName);
-        }
-        
-        // REMOVE ABOVE CODE WHEN DONE
     }
 
-  //ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
-  //System.out.println(queryCustomerTest.);
-    
     public static void errorBox(String theMessage, String titleBar)
     {
         JOptionPane.showMessageDialog(null, theMessage, "ERROR: " + titleBar, JOptionPane.ERROR_MESSAGE);
@@ -108,7 +96,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         addMovieTitleLabel = new javax.swing.JLabel();
         addMovieTitleText = new javax.swing.JTextField();
         addMovieTypeLabel = new javax.swing.JLabel();
-        addMovieTypeDropDownText = new javax.swing.JComboBox();
         addMovieRatingLabel = new javax.swing.JLabel();
         addMovieRatingText = new javax.swing.JTextField();
         addMovieLengthLabel = new javax.swing.JLabel();
@@ -117,10 +104,10 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         addMovieYearText = new javax.swing.JTextField();
         addMovieDirectorLabel = new javax.swing.JLabel();
         addMovieDirectorText = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         movieRemove = new javax.swing.JPanel();
-        removeMovieIDText = new javax.swing.JTextField();
-        removeMovieIDLabel = new javax.swing.JLabel();
         removeMovieButton = new javax.swing.JButton();
+        removeMovieComboBox = new javax.swing.JComboBox();
         movieQuery = new javax.swing.JPanel();
         queryMovieIDText = new javax.swing.JTextField();
         queryMovieIDLabel = new javax.swing.JLabel();
@@ -314,13 +301,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         customerDeleteLayout.setHorizontalGroup(
             customerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerDeleteLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(453, Short.MAX_VALUE)
                 .addComponent(removeCustomerDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(customerDeleteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(removeCustomerDropDownList, 0, 0, Short.MAX_VALUE)
-                .addGap(381, 381, 381))
+                .addComponent(removeCustomerDropDownList, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         customerDeleteLayout.setVerticalGroup(
             customerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,8 +442,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         addMovieTypeLabel.setText("Type");
 
-        addMovieTypeDropDownText.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Horror", "SciFi", "Drama", "Romance" }));
-
         addMovieRatingLabel.setText("Rating");
 
         addMovieLengthLabel.setText("Length");
@@ -465,12 +450,18 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         addMovieDirectorLabel.setText("Director");
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout movieAddLayout = new javax.swing.GroupLayout(movieAdd);
         movieAdd.setLayout(movieAddLayout);
         movieAddLayout.setHorizontalGroup(
             movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieAddLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(453, Short.MAX_VALUE)
                 .addComponent(addMovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
             .addGroup(movieAddLayout.createSequentialGroup()
@@ -485,14 +476,14 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                     .addComponent(addMovieIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addMovieIDText)
+                    .addComponent(addMovieIDText, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(addMovieTitleText)
-                    .addComponent(addMovieTypeDropDownText, 0, 115, Short.MAX_VALUE)
                     .addComponent(addMovieRatingText)
                     .addComponent(addMovieLengthText)
                     .addComponent(addMovieYearText)
-                    .addComponent(addMovieDirectorText))
-                .addContainerGap(374, Short.MAX_VALUE))
+                    .addComponent(addMovieDirectorText)
+                    .addComponent(jTextField1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         movieAddLayout.setVerticalGroup(
             movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,15 +499,15 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addMovieTypeLabel)
-                    .addComponent(addMovieTypeDropDownText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addMovieRatingLabel)
                     .addComponent(addMovieRatingText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addMovieLengthLabel)
-                    .addComponent(addMovieLengthText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addMovieLengthText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addMovieLengthLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addMovieYearLabel)
@@ -532,14 +523,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         inventorySubTabs.addTab("Add Movie", movieAdd);
 
-        removeMovieIDText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeMovieIDTextActionPerformed(evt);
-            }
-        });
-
-        removeMovieIDLabel.setText("Movie ID");
-
         removeMovieButton.setText("Delete");
         removeMovieButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -547,28 +530,31 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
+        removeMovieComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        removeMovieComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMovieComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout movieRemoveLayout = new javax.swing.GroupLayout(movieRemove);
         movieRemove.setLayout(movieRemoveLayout);
         movieRemoveLayout.setHorizontalGroup(
             movieRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(movieRemoveLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(removeMovieIDLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removeMovieIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(435, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieRemoveLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(453, Short.MAX_VALUE)
                 .addComponent(removeMovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(movieRemoveLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(removeMovieComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         movieRemoveLayout.setVerticalGroup(
             movieRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(movieRemoveLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(movieRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeMovieIDLabel)
-                    .addComponent(removeMovieIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(removeMovieComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
                 .addComponent(removeMovieButton)
                 .addContainerGap())
@@ -877,7 +863,24 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_addCustomerFirstNameTextActionPerformed
 
     private void removeCustomerDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCustomerDeleteButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO More logic yo:
+        String selectedItem = (String)removeCustomerDropDownList.getSelectedItem();
+        String[] splitingHairs = selectedItem.split(":");
+        
+        //System.out.println(splitingHairs[1]);
+      
+        if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + splitingHairs[0] + " ?", "WARNING",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
+            //WAX THE CUSTOMER....RAWR
+            removeCustomers(splitingHairs[0], Integer.parseInt(splitingHairs[1]));
+            
+            // ----- Lets clean up our mess and Rebuild our List
+            updateDropDowns();
+        } 
+        
+        else {
+            // LETS GET THE HELL OUTA HERE!!!
+        }
     }//GEN-LAST:event_removeCustomerDeleteButtonActionPerformed
 
     private void addCustomerStreetAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerStreetAddressTextActionPerformed
@@ -895,10 +898,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void addMovieIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieIDTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addMovieIDTextActionPerformed
-
-    private void removeMovieIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieIDTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeMovieIDTextActionPerformed
 
     private void queryMovieIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieIDTextActionPerformed
         // TODO add your handling code here:
@@ -964,6 +963,9 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         addCustomerPhoneNumberText.setText("");
         addCustomerFirstNameText.setText("");
         addCustomerLastNameText.setText("");
+        
+        // Refresh our list
+        updateDropDowns();
         }
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
@@ -997,7 +999,18 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_queryMovieSearchButtonActionPerformed
 
     private void removeMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO More logic yo:
+        if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            DatabaseManager.DbResult resultCustomerRemove = m_databaseManager.removeCustomer(WIDTH);
+            // ----- Lets clean up our mess and Rebuild our List
+            updateDropDowns();
+                        
+        } 
+        
+        else {
+            // no option
+        }
     }//GEN-LAST:event_removeMovieButtonActionPerformed
 
     private void addMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieButtonActionPerformed
@@ -1008,6 +1021,32 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_removeCustomerDropDownListActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void removeMovieComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieComboBoxActionPerformed
+        //
+    }//GEN-LAST:event_removeMovieComboBoxActionPerformed
+    
+    public void updateDropDowns() {
+        removeCustomerDropDownList.removeAllItems();
+        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
+        for(Customer customer : queryCustomerTest) {
+            //System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
+            removeCustomerDropDownList.addItem(customer.m_firstName + " " + customer.m_lastName + ":" + customer.m_id);
+        }
+    }
+    
+    public void updateMovieDropDowns() {
+        removeMovieComboBox.removeAllItems();
+        ArrayList<Video> queryVideoTest = m_databaseManager.searchVideos(false, 0, "Sil", null, null, null, null, null);
+        for(Video video : queryVideoTest)
+        {
+            //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
+            removeMovieComboBox.addItem(video.m_title + ":" + video.m_id);
+        } 
+    }
     /**
      * @param args the command line arguments
      */
@@ -1098,11 +1137,9 @@ public class VideoManagementSystem extends javax.swing.JFrame {
               
     }
     
-    public static void removeCustomers(String customerName, String customerID) {
-        // Method still broken needs work.
-        Customer originalCustomer = null;
-        // Need this statement corrected. Not sure how to insert ID number.
-        DatabaseManager.DbResult resultCustomerRemove = m_databaseManager.removeCustomer(originalCustomer.m_id);
+    public static void removeCustomers(String customerName, int customerID) {
+       
+        DatabaseManager.DbResult resultCustomerRemove = m_databaseManager.removeCustomer(customerID);
         if(resultCustomerRemove != DatabaseManager.DbResult.DB_OK)
         {
             //System.out.println("    Customer Edit Error: This customer doesn't exist or has rentals out/latefees.");
@@ -1111,7 +1148,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         else
         {
             //System.out.println("    Customer successfully removed.");
-            infoBox( customerName + " Removed sucessfully!", "Sucessfull");
+            infoBox( customerName + " deleted sucessfully!", "Sucessfull");
         }
     }
     
@@ -1154,11 +1191,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     
     public static void removeVideo(String videoName, int videoID)
     {
-        Video originalVideo = null;
         
-        // Same issue need a way to pass a movie ID in the database statement below. I should be able to parse
-        // that info from the queryVideo function
-        DatabaseManager.DbResult resultVideoRemove = m_databaseManager.removeVideo(originalVideo.m_id);
+        DatabaseManager.DbResult resultVideoRemove = m_databaseManager.removeVideo(videoID);
         
         if(resultVideoRemove != DatabaseManager.DbResult.DB_OK)
         {
@@ -1420,7 +1454,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JTextField addMovieRatingText;
     private javax.swing.JLabel addMovieTitleLabel;
     private javax.swing.JTextField addMovieTitleText;
-    private javax.swing.JComboBox addMovieTypeDropDownText;
     private javax.swing.JLabel addMovieTypeLabel;
     private javax.swing.JLabel addMovieYearLabel;
     private javax.swing.JTextField addMovieYearText;
@@ -1432,6 +1465,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JList jList3;
     private javax.swing.JScrollBar jScrollBar2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel mainCustomerTab;
     private javax.swing.JPanel mainInventoryTab;
     private javax.swing.JTabbedPane mainTabPanel;
@@ -1472,8 +1506,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JButton removeCustomerDeleteButton;
     private javax.swing.JComboBox removeCustomerDropDownList;
     private javax.swing.JButton removeMovieButton;
-    private javax.swing.JLabel removeMovieIDLabel;
-    private javax.swing.JTextField removeMovieIDText;
+    private javax.swing.JComboBox removeMovieComboBox;
     private javax.swing.JButton transactionsCheckInButton;
     private javax.swing.JButton transactionsCheckInLateFeeButton;
     private javax.swing.JPanel transactionsCheckInTab;
