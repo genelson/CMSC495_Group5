@@ -286,14 +286,14 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="453" max="32767" attributes="0"/>
                               <Component id="removeCustomerDeleteButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="removeCustomerDropDownList" pref="0" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="381" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="removeCustomerDropDownList" min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -319,15 +319,6 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="removeCustomerDropDownList">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="3">
-                            <StringItem index="0" value="test1"/>
-                            <StringItem index="1" value="test2"/>
-                            <StringItem index="2" value="test3"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeCustomerDropDownListActionPerformed"/>
                       </Events>
@@ -520,7 +511,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="453" max="32767" attributes="0"/>
                               <Component id="addMovieButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
@@ -537,15 +528,15 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="addMovieIDText" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="addMovieIDText" alignment="0" pref="115" max="32767" attributes="0"/>
                                   <Component id="addMovieTitleText" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="addMovieTypeDropDownText" alignment="0" pref="115" max="32767" attributes="0"/>
                                   <Component id="addMovieRatingText" alignment="0" max="32767" attributes="0"/>
                                   <Component id="addMovieLengthText" alignment="0" max="32767" attributes="0"/>
                                   <Component id="addMovieYearText" alignment="0" max="32767" attributes="0"/>
                                   <Component id="addMovieDirectorText" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextField1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="374" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -565,7 +556,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="addMovieTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="addMovieTypeDropDownText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -573,9 +564,9 @@
                                   <Component id="addMovieRatingText" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="addMovieLengthLabel" min="-2" max="-2" attributes="0"/>
-                                  <Component id="addMovieLengthText" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="addMovieLengthText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addMovieLengthLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -625,18 +616,6 @@
                         <Property name="text" type="java.lang.String" value="Type"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="addMovieTypeDropDownText">
-                      <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="4">
-                            <StringItem index="0" value="Horror"/>
-                            <StringItem index="1" value="SciFi"/>
-                            <StringItem index="2" value="Drama"/>
-                            <StringItem index="3" value="Romance"/>
-                          </StringArray>
-                        </Property>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="addMovieRatingLabel">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Rating"/>
@@ -665,6 +644,11 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="addMovieDirectorText">
                     </Component>
+                    <Component class="javax.swing.JTextField" name="jTextField1">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+                      </Events>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="movieRemove">
@@ -679,17 +663,15 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="removeMovieIDLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="removeMovieIDText" min="-2" pref="62" max="-2" attributes="0"/>
-                              <EmptySpace pref="435" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="453" max="32767" attributes="0"/>
                               <Component id="removeMovieButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="removeMovieComboBox" min="-2" pref="204" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -697,10 +679,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="removeMovieIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="removeMovieIDText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="removeMovieComboBox" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="388" max="32767" attributes="0"/>
                               <Component id="removeMovieButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -709,22 +688,27 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="removeMovieIDText">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeMovieIDTextActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="removeMovieIDLabel">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Movie ID"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JButton" name="removeMovieButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Delete"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeMovieButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="removeMovieComboBox">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeMovieComboBoxActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
