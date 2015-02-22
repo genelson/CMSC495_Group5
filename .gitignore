@@ -22,6 +22,8 @@ local.properties
 *.war
 *.ear
 *.class
+private.properties
+private.xml
 
 # External tool builders
 .externalToolBuilders/
@@ -35,3 +37,4 @@ local.properties
 # PDT-specific
 .buildpath
 /dist/
+/build/
