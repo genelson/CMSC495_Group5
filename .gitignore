@@ -16,6 +16,13 @@ local.properties
 .settings/
 .loadpath
 
+# No build files
+*target*
+*.jar
+*.war
+*.ear
+*.class
+
 # External tool builders
 .externalToolBuilders/
 
