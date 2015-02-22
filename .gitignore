@@ -38,3 +38,5 @@ private.xml
 .buildpath
 /dist/
 /build/
+*.properties
+nbproject/private/private.properties
