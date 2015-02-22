@@ -1125,7 +1125,32 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_queryCustomerEditButtonActionPerformed
 
     private void queryMovieSaveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSaveChangesButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO 
+        int totalCount = queryMovieDirectorText.getText().length() + queryMovieLengthText.getText().length() + queryMovieRatingText.getText().length() 
+                + queryMovieTitleText.getText().length() + queryMovieYearText.getText().length() + queryMovieIDText.getText().length() 
+                + queryMovieGenreText.getText().length() + queryMovieNumberText.getText().length();
+                
+        if ( totalCount == 0){
+            errorBox("No selection was made! Cannot edit.", "Video Search Error");
+            return;
+        }
+        
+        
+        String Director = queryMovieDirectorText.getText();
+        String Length = queryMovieLengthText.getText();
+        String Rating = queryMovieRatingText.getText();
+        String Title = queryMovieTitleText.getText();
+        String Year = queryMovieYearText.getText();
+        String Count = queryMovieIDText.getText();
+        String Genre = queryMovieGenreText.getText();
+        String IDtmp = queryMovieNumberText.getText();
+        // Movie ID to make changes
+        int ID = Integer.parseInt(IDtmp);
+        
+        //int totalCount = Director.length() + Length.length() + Rating.length() + Title.length() + Year.length() + Count.length() + Genre.length() + IDtmp.length();
+        
+        System.out.println(totalCount);
+        
     }//GEN-LAST:event_queryMovieSaveChangesButtonActionPerformed
 
     private void transactionsCheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutButtonActionPerformed
