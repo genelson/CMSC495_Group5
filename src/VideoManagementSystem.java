@@ -1143,6 +1143,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryMovieSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSearchButtonActionPerformed
         // TODO
         int selectedRowIndex = queryMovieTableList.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            errorBox("No selection was made! Cannot edit.", "Video Search Error");
+            return;
+        }
         //int selectedColumnIndex = queryMovieTableList.getSelectedColumn();
         
         String selectedString = (String) queryMovieTableList.getModel().getValueAt(selectedRowIndex,0);
