@@ -584,6 +584,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         queryMovieYearLabel.setText("Year");
 
+        queryMovieDirectorText.setText(" ");
+
         queryMovieDirectorLabel.setText("Director");
 
         queryMovieSearchButton.setText("Search");
@@ -1125,16 +1127,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_queryCustomerEditButtonActionPerformed
 
     private void queryMovieSaveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSaveChangesButtonActionPerformed
-        // TODO 
-        int totalCount = queryMovieDirectorText.getText().length() + queryMovieLengthText.getText().length() + queryMovieRatingText.getText().length() 
-                + queryMovieTitleText.getText().length() + queryMovieYearText.getText().length() + queryMovieIDText.getText().length() 
-                + queryMovieGenreText.getText().length() + queryMovieNumberText.getText().length();
-                
-        if ( totalCount == 0){
+        // TODO                
+        if ( queryMovieNumberText.getText().length() == 0){
             errorBox("No selection was made! Cannot edit.", "Video Search Error");
             return;
         }
-        
         
         String Director = queryMovieDirectorText.getText();
         String Length = queryMovieLengthText.getText();
@@ -1146,11 +1143,51 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         String IDtmp = queryMovieNumberText.getText();
         // Movie ID to make changes
         int ID = Integer.parseInt(IDtmp);
+        int newCount = Integer.parseInt(Count);
         
-        //int totalCount = Director.length() + Length.length() + Rating.length() + Title.length() + Year.length() + Count.length() + Genre.length() + IDtmp.length();
         
-        System.out.println(totalCount);
-        
+        if (queryMovieDirectorText.getText().length() == 0 || queryMovieDirectorText.getText().matches("^[ ]+")){
+            errorBox("Please Enter Movie Director", "Video Add Error");
+        }          
+        else if (queryMovieLengthText.getText().length() == 0 || queryMovieLengthText.getText().matches("^[ ]+")){
+            errorBox("Please Enter Movie Length", "Video Add Error");
+        }        
+        else if (queryMovieRatingText.getText().length() == 0 || queryMovieRatingText.getText().matches("^[ ]+")){            
+        }
+        else if (queryMovieTitleText.getText().length() == 0 || queryMovieTitleText.getText().matches("^[ ]+")){
+            errorBox("Please Enter Movie Title", "Video Add Error");
+        }        
+        else if ( ! queryMovieYearText.getText().matches("^[12][0-9]{3}")){
+            errorBox("Please Enter the Movies Year, or invalid format (Range of 1000-2999)", "Video Add Error");
+        }
+        else if (queryMovieGenreText.getText().length() == 0 || queryMovieGenreText.getText().matches("^[ ]+")){
+            errorBox("Please Enter Movie Genre", "Video Add Error");
+        }
+        else if ( ! queryMovieIDText.getText().matches("^[1-9][0-9]?")){
+            errorBox("Please Enter amount of Movies. Must be a number not exceeding 99", "Video Add Error");
+        }
+        else {
+            // Lets edit the movie....RAWR
+            editVideo(ID,
+                    Director,
+                    Length,
+                    Rating,
+                    Title,
+                    newCount,
+                    Genre,
+                    Year);
+            
+            //Should be good yes? Rebuild the Lists!! Clean the shiz!!!
+            queryMovieDirectorText.setText("");
+            queryMovieLengthText.setText("");
+            queryMovieRatingText.setText("");
+            queryMovieTitleText.setText("");
+            queryMovieYearText.setText("");
+            queryMovieIDText.setText("");
+            queryMovieGenreText.setText("");
+            queryMovieNumberText.setText("");
+            updateMovieDropDowns();
+        }                
     }//GEN-LAST:event_queryMovieSaveChangesButtonActionPerformed
 
     private void transactionsCheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutButtonActionPerformed
@@ -1166,7 +1203,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_transactionsCheckInLateFeeButtonActionPerformed
 
     private void queryMovieSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSearchButtonActionPerformed
-        // TODO
+        // TODO Errors on selected a empty row
         int selectedRowIndex = queryMovieTableList.getSelectedRow();
         if(selectedRowIndex < 0)
         {
@@ -1190,6 +1227,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             queryMovieIDText.setText(String.valueOf(video.m_totalNumberOfMovies));
             queryMovieGenreText.setText(video.m_type);
             queryMovieNumberText.setText(String.valueOf(video.m_id));
+            
         }
     }//GEN-LAST:event_queryMovieSearchButtonActionPerformed
 
@@ -1484,9 +1522,47 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
     }
     
-    public static void queryVideo(){
-        // Need to get this queryVideo working. 
-        ArrayList<Video> queryVideoAddVerify = m_databaseManager.searchVideos(true, 0, "Charlie and the Chocolate Factory", null, null, null, "2013", null);
+    public static void editVideo(int movieID,
+            String theDirector,
+            String theLength,
+            String theRating,
+            String theTitle,
+            int theCount,
+            String theType,
+            String theYear)
+    {
+        //  
+        Video originalVideo = null;
+        System.out.println(movieID);
+        ArrayList<Video> videoEdit = m_databaseManager.searchVideos(true, movieID, null, null, null, null, null, null);
+        
+        for(Video video : videoEdit)
+            {
+                originalVideo = new Video(video);
+                System.out.println("        [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
+                //System.out.println("        [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
+            }
+        
+        originalVideo.m_director = theDirector;
+        originalVideo.m_length = theLength;
+        originalVideo.m_rating = theRating;
+        originalVideo.m_title = theTitle;
+        originalVideo.m_totalNumberOfMovies = theCount;
+        originalVideo.m_type = theType;
+        originalVideo.m_year = theYear;
+        
+        DatabaseManager.DbResult resultVideoEdit = m_databaseManager.updateVideo(originalVideo);
+        
+        if(resultVideoEdit != DatabaseManager.DbResult.DB_OK)
+        {
+            //System.out.println("    Video Edit Error: This video already exists! Change some of the data!");
+            errorBox("There was an issue editing the video look at editVideo()","Video Edit Error");
+        }
+        else
+        {
+            infoBox("The Movie" + "'" + theTitle + "' was edited successfully!", "Video Edit Information");
+        
+        }
     }
     
     ///////////////////////////////////////////////////////////////////
