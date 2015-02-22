@@ -24,7 +24,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="mainTabPanel" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="mainTabPanel" min="-2" pref="618" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -117,21 +120,26 @@
                                               <Component id="addCustomerStreetAddressText" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="addCustomerCityLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                                              <Component id="addCustomerStateLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                                              <Component id="addCustomerZipLabel" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="addCustomerCityText" min="-2" pref="115" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="addCustomerStateText" min="-2" pref="115" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                              <Component id="addCustomerZipText" min="-2" pref="115" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="addCustomerCityLabel" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                                      <Component id="addCustomerStateLabel" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="addCustomerCityText" min="-2" pref="115" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="addCustomerStateText" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="addCustomerZipLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="addCustomerZipText" alignment="1" min="-2" pref="85" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="179" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -226,7 +234,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="addCustomerPhoneNumberText">
                       <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value="1-222-222-2222"/>
+                        <Property name="toolTipText" type="java.lang.String" value="2231235412"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="addCustomerAddressLabel">
@@ -286,7 +294,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="453" max="32767" attributes="0"/>
+                              <EmptySpace pref="431" max="32767" attributes="0"/>
                               <Component id="removeCustomerDeleteButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -337,62 +345,115 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="queryCustomerEditButton" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="queryCustomerIDLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerSearchButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                      <Component id="queryCustomerIDText" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="queryCustomerNameAddLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="queryCustomerLastNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="queryCustomerLastNameText" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
-                                          <Component id="queryCustomerFirstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="queryCustomerFirstNameText" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
-                                          <Component id="queryCustomerPhoneLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="queryCustomerPhoneNumberText" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="queryCustomerFirstNameLabel" max="32767" attributes="0"/>
+                                          <Component id="queryCustomerPhoneLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="queryCustomerLastNameLabel" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="queryCustomerListPane" min="-2" pref="390" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="queryCustomerFirstNameText" min="-2" pref="115" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerLastNameText" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerPhoneNumberText" min="-2" pref="115" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="queryCustomerStateLabel" max="32767" attributes="0"/>
+                                  <Component id="queryCustomerCityLabel" max="32767" attributes="0"/>
+                                  <Component id="queryCustomerStreetLabel" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="queryCustomerStateText" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="queryCustomerEditButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryCustomerSearchButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="queryCustomerZipLabel" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryCustomerZipText" min="-2" pref="85" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="queryCustomerCityText" min="-2" pref="115" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="queryCustomerStreetAddressText" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="queryCustomerTablePane" min="-2" pref="531" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="queryCustomerTablePane" min="-2" pref="300" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerNameAddLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerLastNameLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerLastNameText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerFirstNameLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerFirstNameText" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerPhoneLabel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryCustomerPhoneNumberText" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="queryCustomerEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerSearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="queryCustomerListPane" alignment="0" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="queryCustomerFirstNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerFirstNameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerStreetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerStreetAddressText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="queryCustomerLastNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerLastNameText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerCityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerCityText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="queryCustomerStateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerStateText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerZipLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerZipText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerPhoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerPhoneNumberText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="queryCustomerIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryCustomerIDText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="229" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="queryCustomerSearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="queryCustomerEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -403,14 +464,6 @@
                     <Component class="javax.swing.JLabel" name="queryCustomerFirstNameLabel">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="First"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="queryCustomerPhoneLabel">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="11" style="1"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Phone Number"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="queryCustomerLastNameLabel">
@@ -436,32 +489,99 @@
                         <Property name="toolTipText" type="java.lang.String" value="1-222-222-2222"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="queryCustomerNameAddLabel">
+                    <Component class="javax.swing.JButton" name="queryCustomerEditButton">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="11" style="1"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Customer Name"/>
+                        <Property name="text" type="java.lang.String" value="Save Changes"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="queryCustomerEditButtonActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="queryCustomerListPane">
+                    <Container class="javax.swing.JScrollPane" name="queryCustomerTablePane">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JList" name="queryCustomerList">
+                        <Component class="javax.swing.JTable" name="queryCustomerTableList">
+                          <Properties>
+                            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="2" rowCount="100">
+                                <Column editable="false" title="ID" type="java.lang.String"/>
+                                <Column editable="false" title="Name" type="java.lang.String"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="40" minWidth="10" prefWidth="30" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="queryCustomerEditButton">
+                    <Component class="javax.swing.JLabel" name="queryCustomerPhoneLabel">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Edit"/>
+                        <Property name="text" type="java.lang.String" value="Phone"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="queryCustomerStreetLabel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Street"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="queryCustomerStreetAddressText">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="queryCustomerEditButtonActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="queryCustomerStreetAddressTextActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="queryCustomerCityLabel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="City"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="queryCustomerCityText">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="queryCustomerCityTextActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="queryCustomerStateLabel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="State"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="queryCustomerStateText">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="queryCustomerZipLabel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Zip Code"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="queryCustomerZipText">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="queryCustomerIDLabel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="ID"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="queryCustomerIDText">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -511,7 +631,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="453" max="32767" attributes="0"/>
+                              <EmptySpace pref="429" max="32767" attributes="0"/>
                               <Component id="addMovieButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
@@ -666,7 +786,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="453" max="32767" attributes="0"/>
+                              <EmptySpace pref="429" max="32767" attributes="0"/>
                               <Component id="removeMovieButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -722,74 +842,76 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="queryMovieTable" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="queryMovieTitleLabel" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="queryMovieTitleText" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="queryMovieLengthLabel" min="-2" pref="50" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="queryMovieLengthText" min="-2" pref="115" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="queryMovieNumberText" min="-2" pref="30" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="queryMovieNumber" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                              <Component id="queryMovieLengthLabel" min="-2" pref="50" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="queryMovieSaveChangesButton" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="queryMovieSearchButton" min="-2" pref="90" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="queryMovieYearLabel" min="-2" pref="50" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="queryMovieYearText" min="-2" pref="115" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="queryMovieDirectorLabel" min="-2" pref="50" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="queryMovieDirectorText" min="-2" pref="115" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                              <Component id="queryMovieLengthText" min="-2" pref="115" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="queryMovieNumber" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryMovieNumberText" min="-2" pref="30" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="queryMovieYearLabel" min="-2" pref="36" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryMovieYearText" min="-2" pref="115" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryMovieDirectorLabel" min="-2" pref="44" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryMovieDirectorText" min="-2" pref="115" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="queryMovieSaveChangesButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryMovieSearchButton" min="-2" pref="90" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="queryMovieTitleLabel" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="queryMovieTitleText" min="-2" pref="441" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="queryMovieIDLabel" min="-2" pref="50" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="queryMovieIDText" min="-2" pref="115" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="queryMovieGenreLabel" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="queryMovieGenreLabel" min="-2" pref="36" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="queryMovieGenreText" min="-2" pref="115" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="queryMovieRatingLabel" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="queryMovieRatingLabel" min="-2" pref="44" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="queryMovieRatingText" min="-2" pref="115" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
+                          <Component id="queryMovieTablePane" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="queryMovieTable" pref="312" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="queryMovieTablePane" pref="300" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="queryMovieTitleLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="queryMovieTitleText" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -820,11 +942,11 @@
                                           <Component id="queryMovieSaveChangesButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="queryMovieNumberText" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="queryMovieNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="queryMovieNumberText" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -908,7 +1030,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="queryMovieGenreTextActionPerformed"/>
                       </Events>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="queryMovieTable">
+                    <Container class="javax.swing.JScrollPane" name="queryMovieTablePane">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
@@ -1013,7 +1135,7 @@
                                       <Component id="transactionsCheckOutCustomerIDText" min="-2" pref="104" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="transactionsCheckOutSearchButton" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="269" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="245" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1119,7 +1241,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="347" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="323" max="32767" attributes="0"/>
                                       <Component id="transactionsCheckInLateFeeButton" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="transactionsCheckInButton" min="-2" pref="90" max="-2" attributes="0"/>

@@ -81,15 +81,24 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         customerQuery = new javax.swing.JPanel();
         queryCustomerLastNameText = new javax.swing.JTextField();
         queryCustomerFirstNameLabel = new javax.swing.JLabel();
-        queryCustomerPhoneLabel = new javax.swing.JLabel();
         queryCustomerLastNameLabel = new javax.swing.JLabel();
         queryCustomerFirstNameText = new javax.swing.JTextField();
         queryCustomerSearchButton = new javax.swing.JButton();
         queryCustomerPhoneNumberText = new javax.swing.JTextField();
-        queryCustomerNameAddLabel = new javax.swing.JLabel();
-        queryCustomerListPane = new javax.swing.JScrollPane();
-        queryCustomerList = new javax.swing.JList();
         queryCustomerEditButton = new javax.swing.JButton();
+        queryCustomerTablePane = new javax.swing.JScrollPane();
+        queryCustomerTableList = new javax.swing.JTable();
+        queryCustomerPhoneLabel = new javax.swing.JLabel();
+        queryCustomerStreetLabel = new javax.swing.JLabel();
+        queryCustomerStreetAddressText = new javax.swing.JTextField();
+        queryCustomerCityLabel = new javax.swing.JLabel();
+        queryCustomerCityText = new javax.swing.JTextField();
+        queryCustomerStateLabel = new javax.swing.JLabel();
+        queryCustomerStateText = new javax.swing.JTextField();
+        queryCustomerZipLabel = new javax.swing.JLabel();
+        queryCustomerZipText = new javax.swing.JTextField();
+        queryCustomerIDLabel = new javax.swing.JLabel();
+        queryCustomerIDText = new javax.swing.JTextField();
         mainInventoryTab = new javax.swing.JPanel();
         inventorySubTabs = new javax.swing.JTabbedPane();
         movieAdd = new javax.swing.JPanel();
@@ -128,7 +137,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         queryMovieSearchButton = new javax.swing.JButton();
         queryMovieSaveChangesButton = new javax.swing.JButton();
         queryMovieGenreText = new javax.swing.JTextField();
-        queryMovieTable = new javax.swing.JScrollPane();
+        queryMovieTablePane = new javax.swing.JScrollPane();
         queryMovieTableList = new javax.swing.JTable();
         queryMovieNumberText = new javax.swing.JTextField();
         queryMovieNumber = new javax.swing.JLabel();
@@ -179,7 +188,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         addCustomerPhoneLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         addCustomerPhoneLabel.setText("Phone Number");
 
-        addCustomerPhoneNumberText.setToolTipText("1-222-222-2222");
+        addCustomerPhoneNumberText.setToolTipText("2231235412");
 
         addCustomerAddressLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         addCustomerAddressLabel.setText("Customer Address");
@@ -233,18 +242,20 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                                 .addComponent(addCustomerStreet)
                                 .addComponent(addCustomerStreetAddressText))
                             .addGroup(customerAddLayout.createSequentialGroup()
-                                .addComponent(addCustomerCityLabel)
-                                .addGap(102, 102, 102)
-                                .addComponent(addCustomerStateLabel)
-                                .addGap(92, 92, 92)
-                                .addComponent(addCustomerZipLabel))
-                            .addGroup(customerAddLayout.createSequentialGroup()
-                                .addComponent(addCustomerCityText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addCustomerStateText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(addCustomerZipText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 179, Short.MAX_VALUE)))
+                                .addGroup(customerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(customerAddLayout.createSequentialGroup()
+                                        .addComponent(addCustomerCityLabel)
+                                        .addGap(102, 102, 102)
+                                        .addComponent(addCustomerStateLabel))
+                                    .addGroup(customerAddLayout.createSequentialGroup()
+                                        .addComponent(addCustomerCityText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(addCustomerStateText, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(84, 84, 84)
+                                .addGroup(customerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addCustomerZipLabel)
+                                    .addComponent(addCustomerZipText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 187, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         customerAddLayout.setVerticalGroup(
@@ -305,7 +316,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         customerDeleteLayout.setHorizontalGroup(
             customerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerDeleteLayout.createSequentialGroup()
-                .addContainerGap(453, Short.MAX_VALUE)
+                .addContainerGap(431, Short.MAX_VALUE)
                 .addComponent(removeCustomerDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(customerDeleteLayout.createSequentialGroup()
@@ -327,9 +338,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         queryCustomerFirstNameLabel.setText("First");
 
-        queryCustomerPhoneLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        queryCustomerPhoneLabel.setText("Phone Number");
-
         queryCustomerLastNameLabel.setText("Last");
 
         queryCustomerFirstNameText.addActionListener(new java.awt.event.ActionListener() {
@@ -347,17 +355,170 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         queryCustomerPhoneNumberText.setToolTipText("1-222-222-2222");
 
-        queryCustomerNameAddLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        queryCustomerNameAddLabel.setText("Customer Name");
-
-        queryCustomerListPane.setViewportView(queryCustomerList);
-
-        queryCustomerEditButton.setText("Edit");
+        queryCustomerEditButton.setText("Save Changes");
         queryCustomerEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 queryCustomerEditButtonActionPerformed(evt);
             }
         });
+
+        queryCustomerTableList.setAutoCreateRowSorter(true);
+        queryCustomerTableList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "ID", "Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        queryCustomerTableList.getTableHeader().setReorderingAllowed(false);
+        queryCustomerTablePane.setViewportView(queryCustomerTableList);
+        if (queryCustomerTableList.getColumnModel().getColumnCount() > 0) {
+            queryCustomerTableList.getColumnModel().getColumn(0).setMinWidth(10);
+            queryCustomerTableList.getColumnModel().getColumn(0).setPreferredWidth(30);
+            queryCustomerTableList.getColumnModel().getColumn(0).setMaxWidth(40);
+            queryCustomerTableList.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        queryCustomerPhoneLabel.setText("Phone");
+
+        queryCustomerStreetLabel.setText("Street");
+
+        queryCustomerStreetAddressText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queryCustomerStreetAddressTextActionPerformed(evt);
+            }
+        });
+
+        queryCustomerCityLabel.setText("City");
+
+        queryCustomerCityText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queryCustomerCityTextActionPerformed(evt);
+            }
+        });
+
+        queryCustomerStateLabel.setText("State");
+
+        queryCustomerZipLabel.setText("Zip Code");
+
+        queryCustomerIDLabel.setText("ID");
+
+        queryCustomerIDText.setEditable(false);
 
         javax.swing.GroupLayout customerQueryLayout = new javax.swing.GroupLayout(customerQuery);
         customerQuery.setLayout(customerQueryLayout);
@@ -366,50 +527,88 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             .addGroup(customerQueryLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerQueryLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(queryCustomerEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(customerQueryLayout.createSequentialGroup()
+                        .addComponent(queryCustomerIDLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(queryCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(customerQueryLayout.createSequentialGroup()
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(queryCustomerFirstNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(queryCustomerPhoneLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(queryCustomerLastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(queryCustomerNameAddLabel)
-                            .addComponent(queryCustomerLastNameLabel)
-                            .addComponent(queryCustomerLastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(queryCustomerFirstNameLabel)
                             .addComponent(queryCustomerFirstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(queryCustomerPhoneLabel)
-                            .addComponent(queryCustomerPhoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(queryCustomerListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(queryCustomerLastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(queryCustomerPhoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(4, 4, 4)
+                .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(queryCustomerStateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(queryCustomerCityLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(queryCustomerStreetLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customerQueryLayout.createSequentialGroup()
+                        .addComponent(queryCustomerStateText, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(customerQueryLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(queryCustomerEditButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryCustomerSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(customerQueryLayout.createSequentialGroup()
+                                .addComponent(queryCustomerZipLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryCustomerZipText, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(customerQueryLayout.createSequentialGroup()
+                        .addComponent(queryCustomerCityText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(customerQueryLayout.createSequentialGroup()
+                        .addComponent(queryCustomerStreetAddressText)
+                        .addContainerGap())))
+            .addGroup(customerQueryLayout.createSequentialGroup()
+                .addComponent(queryCustomerTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         customerQueryLayout.setVerticalGroup(
             customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerQueryLayout.createSequentialGroup()
+                .addComponent(queryCustomerTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(customerQueryLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(queryCustomerNameAddLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(queryCustomerEditButton)
+                            .addComponent(queryCustomerSearchButton)))
+                    .addGroup(customerQueryLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(queryCustomerFirstNameLabel)
+                            .addComponent(queryCustomerFirstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(queryCustomerStreetLabel)
+                            .addComponent(queryCustomerStreetAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerLastNameLabel)
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(queryCustomerLastNameLabel)
+                            .addComponent(queryCustomerLastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(queryCustomerCityLabel)
+                            .addComponent(queryCustomerCityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerLastNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerFirstNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerFirstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerPhoneLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryCustomerPhoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(queryCustomerListPane, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
-                .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(queryCustomerSearchButton)
-                    .addComponent(queryCustomerEditButton))
-                .addContainerGap())
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(queryCustomerStateLabel)
+                            .addComponent(queryCustomerStateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(queryCustomerZipLabel)
+                            .addComponent(queryCustomerZipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(queryCustomerPhoneLabel)
+                            .addComponent(queryCustomerPhoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(queryCustomerIDLabel)
+                            .addComponent(queryCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         customerSubTabs.addTab("Search Customer", customerQuery);
@@ -465,7 +664,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         movieAddLayout.setHorizontalGroup(
             movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieAddLayout.createSequentialGroup()
-                .addContainerGap(453, Short.MAX_VALUE)
+                .addContainerGap(429, Short.MAX_VALUE)
                 .addComponent(addMovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
             .addGroup(movieAddLayout.createSequentialGroup()
@@ -546,7 +745,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         movieRemoveLayout.setHorizontalGroup(
             movieRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieRemoveLayout.createSequentialGroup()
-                .addContainerGap(453, Short.MAX_VALUE)
+                .addContainerGap(429, Short.MAX_VALUE)
                 .addComponent(removeMovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(movieRemoveLayout.createSequentialGroup()
@@ -732,7 +931,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
         queryMovieTableList.getTableHeader().setReorderingAllowed(false);
-        queryMovieTable.setViewportView(queryMovieTableList);
+        queryMovieTablePane.setViewportView(queryMovieTableList);
         if (queryMovieTableList.getColumnModel().getColumnCount() > 0) {
             queryMovieTableList.getColumnModel().getColumn(0).setMinWidth(10);
             queryMovieTableList.getColumnModel().getColumn(0).setPreferredWidth(30);
@@ -748,60 +947,62 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         movieQuery.setLayout(movieQueryLayout);
         movieQueryLayout.setHorizontalGroup(
             movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(queryMovieTable)
             .addGroup(movieQueryLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(movieQueryLayout.createSequentialGroup()
-                        .addComponent(queryMovieTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryMovieTitleText)
-                        .addGap(18, 18, 18))
+                        .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(movieQueryLayout.createSequentialGroup()
+                                .addComponent(queryMovieLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryMovieLengthText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(movieQueryLayout.createSequentialGroup()
+                                .addComponent(queryMovieNumber)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryMovieNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(4, 4, 4)
+                        .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(movieQueryLayout.createSequentialGroup()
+                                .addComponent(queryMovieYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryMovieYearText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryMovieDirectorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryMovieDirectorText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 14, Short.MAX_VALUE))
+                            .addGroup(movieQueryLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(queryMovieSaveChangesButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(queryMovieSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(movieQueryLayout.createSequentialGroup()
                         .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(movieQueryLayout.createSequentialGroup()
-                                .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(movieQueryLayout.createSequentialGroup()
-                                        .addComponent(queryMovieLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(queryMovieLengthText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(movieQueryLayout.createSequentialGroup()
-                                        .addComponent(queryMovieNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(queryMovieNumber)))
+                                .addComponent(queryMovieTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieQueryLayout.createSequentialGroup()
-                                        .addComponent(queryMovieSaveChangesButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(queryMovieSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(movieQueryLayout.createSequentialGroup()
-                                        .addComponent(queryMovieYearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(queryMovieYearText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(queryMovieDirectorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(queryMovieDirectorText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(queryMovieTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(movieQueryLayout.createSequentialGroup()
                                 .addComponent(queryMovieIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(queryMovieGenreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(queryMovieGenreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieGenreText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(queryMovieRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(queryMovieRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieRatingText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(queryMovieTablePane)
         );
         movieQueryLayout.setVerticalGroup(
             movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(movieQueryLayout.createSequentialGroup()
-                .addComponent(queryMovieTable, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(queryMovieTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(queryMovieTitleLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(queryMovieTitleText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -827,11 +1028,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(queryMovieSearchButton)
                             .addComponent(queryMovieSaveChangesButton)))
-                    .addGroup(movieQueryLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieQueryLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(queryMovieNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(queryMovieNumber))))
+                            .addComponent(queryMovieNumber)
+                            .addComponent(queryMovieNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -894,7 +1095,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addComponent(transactionsCheckOutCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transactionsCheckOutSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 269, Short.MAX_VALUE))
+                        .addGap(0, 245, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsCheckOutTabLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(transactionsCheckOutLateFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -952,7 +1153,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsCheckInTabLayout.createSequentialGroup()
-                        .addGap(0, 347, Short.MAX_VALUE)
+                        .addGap(0, 323, Short.MAX_VALUE)
                         .addComponent(transactionsCheckInLateFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transactionsCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -995,7 +1196,9 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabPanel)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainTabPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1076,7 +1279,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             errorBox("Please Enter First Name", "Add Customer Error");
         }
         
-        else if (addCustomerPhoneNumberText.getText().length()==0 || addCustomerPhoneNumberText.getText().length() != 10 || addCustomerPhoneNumberText.getText().matches("^[ ]+")) {
+        else if ( ! addCustomerPhoneNumberText.getText().matches("^[0-9]{10}")) {
             errorBox("Please Enter Phone Number, Remove Hypens, or verify number is 10 digits", "Add Customer Error");
         }
         
@@ -1119,11 +1322,102 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void queryCustomerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerSearchButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO Errors on selected a empty row
+        int selectedRowIndex = queryCustomerTableList.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            errorBox("No selection was made! Cannot edit.", "Video Search Error");
+            return;
+        }
+        //int selectedColumnIndex = queryMovieTableList.getSelectedColumn();
+        
+        String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
+        //System.out.println(selectedString);
+        ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(selectedString), null, null, null);
+        
+        for(Customer customer : queryTheCustomer)
+        {
+            queryCustomerZipText.setText(customer.m_zipCode);
+            queryCustomerStateText.setText(customer.m_state);
+            queryCustomerCityText.setText(customer.m_city);
+            queryCustomerStreetAddressText.setText(customer.m_streetAddress);
+            queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
+            queryCustomerFirstNameText.setText(customer.m_firstName);
+            queryCustomerLastNameText.setText(customer.m_lastName);
+            queryCustomerIDText.setText(String.valueOf(customer.m_id));
+            
+        }
+        
     }//GEN-LAST:event_queryCustomerSearchButtonActionPerformed
 
     private void queryCustomerEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerEditButtonActionPerformed
-       
+        //TODO
+        if ( queryCustomerIDText.getText().length() == 0){
+            errorBox("No selection was made! Cannot edit.", "Video Search Error");
+            return;
+        }
+            String Lastname = queryCustomerLastNameText.getText();
+            String Firstname = queryCustomerFirstNameText.getText();
+            String Phone = queryCustomerPhoneNumberText.getText();
+            String Street = queryCustomerStreetAddressText.getText();
+            String City = queryCustomerCityText.getText();
+            String State = queryCustomerStateText.getText();
+            String Zip = queryCustomerZipText.getText();
+            String ID = queryCustomerIDText.getText(); 
+            int customerID =Integer.parseInt(ID);
+            //System.out.println(customerID);
+        // Customer ID to make changes
+      
+        
+        if (queryCustomerLastNameText.getText().length()==0 || queryCustomerLastNameText.getText().matches("^[ ]+") ) {
+            errorBox("Please Enter Last Name", "Edit Customer Error");
+        }
+        
+        else if (queryCustomerFirstNameText.getText().length()==0 || queryCustomerFirstNameText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter First Name", "Edit Customer Error");
+        }
+        
+        else if ( ! queryCustomerPhoneNumberText.getText().matches("^[0-9]{10}")) {
+            errorBox("Please Enter Phone Number, Remove Hypens, or verify number is 10 digits", "Edit Customer Error");
+        }
+        
+        else if (queryCustomerStreetAddressText.getText().length()==0 || queryCustomerStreetAddressText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter Street", "Edit Customer Error");
+        }
+        
+        else if (queryCustomerCityText.getText().length()==0 || queryCustomerCityText.getText().matches("^[ ]+")) {
+            errorBox("Please Enter City", "Edit Customer Error");
+        }
+        
+        else if (queryCustomerStateText.getText().length()==0 || queryCustomerStateText.getText().length()>2) {
+            errorBox("Please Enter State, or make sure your using 2 letter abbreviation", "Edit Customer Error");
+        }
+        
+        else if ( ! queryCustomerZipText.getText().matches("^[0-9]{5}")) {
+            errorBox("Please Enter Zip Code, or verify zipcode is 5 digits", "Edit Customer Error");
+        }
+        else {
+            // Lets edit the movie....RAWR
+            editCustomer(customerID,
+                Lastname,
+                Firstname,
+                Street,
+                City,
+                State,
+                Zip,
+                Phone);
+            
+            //Should be good yes? Rebuild the Lists!! Clean the shiz!!!
+            queryCustomerZipText.setText("");
+            queryCustomerStateText.setText("");
+            queryCustomerCityText.setText("");
+            queryCustomerStreetAddressText.setText("");
+            queryCustomerPhoneNumberText.setText("");
+            queryCustomerFirstNameText.setText("");
+            queryCustomerLastNameText.setText("");
+            queryCustomerIDText.setText("");
+            updateDropDowns();
+        }                
     }//GEN-LAST:event_queryCustomerEditButtonActionPerformed
 
     private void queryMovieSaveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSaveChangesButtonActionPerformed
@@ -1329,13 +1623,27 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryMovieGenreTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieGenreTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_queryMovieGenreTextActionPerformed
+
+    private void queryCustomerStreetAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerStreetAddressTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_queryCustomerStreetAddressTextActionPerformed
+
+    private void queryCustomerCityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerCityTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_queryCustomerCityTextActionPerformed
     
     public void updateDropDowns() {
         removeCustomerDropDownList.removeAllItems();
+        clearCustomerTable();
         ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
+        int i=0;
         for(Customer customer : queryCustomerTest) {
             //System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
             removeCustomerDropDownList.addItem(customer.m_firstName + " " + customer.m_lastName + ":" + customer.m_id);
+            
+            queryCustomerTableList.getModel().setValueAt(String.valueOf(customer.m_id), i, 0);
+            queryCustomerTableList.getModel().setValueAt(customer.m_firstName + " " + customer.m_lastName, i, 1);
+            i++;
         }
     }
     
@@ -1360,6 +1668,14 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         for (int i = 0; i < queryMovieTableList.getRowCount(); i++){
             for(int j = 0; j < queryMovieTableList.getColumnCount(); j++) {
                 queryMovieTableList.setValueAt("", i, j);
+            }
+        }
+    }
+    
+    public void clearCustomerTable(){
+        for (int i = 0; i < queryCustomerTableList.getRowCount(); i++){
+            for(int j = 0; j < queryCustomerTableList.getColumnCount(); j++) {
+                queryCustomerTableList.setValueAt("", i, j);
             }
         }
     }
@@ -1468,13 +1784,46 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
     }
     
-    public static void queryCustomers(String lastName, String firstName, int ID) {
-        // I need this function to return a array list in the Format of "Name, ID" that I can have 
-        // in the VideoManagementSystem.java...
-        // that way I can put the arraylist in the dropdown in the GUI, then when you click "remove"
-        // It should grab the ID from the drop down and pass it to the removeCustomers function
-        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, ID, lastName, firstName, null);      
-   
+       public static void editCustomer(int customerID,
+            String Last,
+            String First,
+            String Street,
+            String City,
+            String State,
+            String Zip,
+            String Phone)
+    {
+        //  
+        Customer originalCustomer = null;
+        ArrayList<Customer> videoEdit = m_databaseManager.searchCustomers(true, customerID, null, null, null);
+      
+        for(Customer customer : videoEdit)
+            {
+                originalCustomer = new Customer(customer);
+                //System.out.println(originalCustomer.m_streetAddress);
+
+                
+            }
+        
+        originalCustomer.m_lastName = Last;
+        originalCustomer.m_firstName = First;
+        originalCustomer.m_streetAddress = Street;
+        originalCustomer.m_city = City;
+        originalCustomer.m_state = State;
+        originalCustomer.m_zipCode = Zip;
+        originalCustomer.m_phoneNumber = Phone;
+        
+        DatabaseManager.DbResult resultCustomerEdit = m_databaseManager.updateCustomer(originalCustomer);
+        if(resultCustomerEdit != DatabaseManager.DbResult.DB_OK)
+        {
+            //System.out.println("    Video Edit Error: This video already exists! Change some of the data!");
+            errorBox("There was an issue editing the customer look at editCustomer()","Customer Edit Error");
+        }
+        else
+        {
+            infoBox("The Customer" + "'" + First + " " + Last + "' was edited successfully!", "Customer Edit Information");
+        
+        }
     }
     
     public static void addVideo(String title,
@@ -1844,17 +2193,26 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JPanel movieAdd;
     private javax.swing.JPanel movieQuery;
     private javax.swing.JPanel movieRemove;
+    private javax.swing.JLabel queryCustomerCityLabel;
+    private javax.swing.JTextField queryCustomerCityText;
     private javax.swing.JButton queryCustomerEditButton;
     private javax.swing.JLabel queryCustomerFirstNameLabel;
     private javax.swing.JTextField queryCustomerFirstNameText;
+    private javax.swing.JLabel queryCustomerIDLabel;
+    private javax.swing.JTextField queryCustomerIDText;
     private javax.swing.JLabel queryCustomerLastNameLabel;
     private javax.swing.JTextField queryCustomerLastNameText;
-    private javax.swing.JList queryCustomerList;
-    private javax.swing.JScrollPane queryCustomerListPane;
-    private javax.swing.JLabel queryCustomerNameAddLabel;
     private javax.swing.JLabel queryCustomerPhoneLabel;
     private javax.swing.JTextField queryCustomerPhoneNumberText;
     private javax.swing.JButton queryCustomerSearchButton;
+    private javax.swing.JLabel queryCustomerStateLabel;
+    private javax.swing.JTextField queryCustomerStateText;
+    private javax.swing.JTextField queryCustomerStreetAddressText;
+    private javax.swing.JLabel queryCustomerStreetLabel;
+    private javax.swing.JTable queryCustomerTableList;
+    private javax.swing.JScrollPane queryCustomerTablePane;
+    private javax.swing.JLabel queryCustomerZipLabel;
+    private javax.swing.JTextField queryCustomerZipText;
     private javax.swing.JLabel queryMovieDirectorLabel;
     private javax.swing.JTextField queryMovieDirectorText;
     private javax.swing.JLabel queryMovieGenreLabel;
@@ -1869,8 +2227,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JTextField queryMovieRatingText;
     private javax.swing.JButton queryMovieSaveChangesButton;
     private javax.swing.JButton queryMovieSearchButton;
-    private javax.swing.JScrollPane queryMovieTable;
     private javax.swing.JTable queryMovieTableList;
+    private javax.swing.JScrollPane queryMovieTablePane;
     private javax.swing.JLabel queryMovieTitleLabel;
     private javax.swing.JTextField queryMovieTitleText;
     private javax.swing.JLabel queryMovieYearLabel;
