@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,16 @@ import java.util.logging.Logger;
  * An excellent tutorial on MySQL in Java:
  *              http://zetcode.com/db/mysqljava/
  */
+
+/*
+REVISION TABLE:
+
+--------------------------------------------------------------------------------
+DATE                NAME                    CHANGE DESCRIPTION
+--------------------------------------------------------------------------------
+2/16/15             Georgia Nelson          File created.
+2/19/15             Georgia Nelson          Modifying sort of video search.
+*/
 
 public class DatabaseManager 
 {
@@ -904,6 +915,13 @@ public class DatabaseManager
         ArrayList<Rental> rentals = new ArrayList();
         
         //TODO - Sprint 2 Functionality (gnelson)
+        // 1. Build a search very similar to the Customer and Video searches.
+        // 2. If video ID is 0, leave it out as a search param.
+        // 3. If Customer ID is 0, leave it out as a search param.
+        // 4. If both are 0, just do a very simple SELECT * FROM statement.
+        // 5. Iterate the query results and create new Rental objects for each
+        // 6. Add them to the list
+        // 7. Return the list
         
         return rentals;
     }
@@ -920,8 +938,59 @@ public class DatabaseManager
         {
             return DbResult.DB_ERR_BAD_INPUT;
         }
+                
+        // Create database objects to manage connectivity and querying
+        Connection conn = null;
+        PreparedStatement query = null;
         
-        //TODO - Sprint 2 Functionality (gnelson)
+        try
+        {
+            // Open the database connection
+            conn = DriverManager.getConnection(m_address, m_user, m_databasePassword);
+            
+            // Write the string and prepare the statement for querying
+            String queryString = "INSERT INTO rental (cust_id, date_out, movie_id, late_fees_paid, item_id) VALUES (?, ?, ?, 0, 0)";
+            
+            // Create the prepared statement and plug in the data from
+            // the method parameters
+            query = conn.prepareStatement(queryString);
+            query.setInt(1, customerId);
+            query.setDate(2, new Date(System.currentTimeMillis()));
+            query.setInt(3, videoId);
+            
+            // Execute the query
+            query.executeUpdate();
+        } 
+        catch(SQLException ex) 
+        {
+            // Log any errors
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            return DbResult.DB_ERR_QUERY;
+        }
+        finally
+        {
+            try
+            {
+                // Close out the query and the connection to the database
+                if(query != null)
+                {
+                    query.close();
+                }
+                
+                if(conn != null)
+                {
+                    conn.close();
+                }
+            }
+            catch(SQLException ex)
+            {
+                // Log any errors
+                Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex); 
+                return DbResult.DB_ERR_QUERY;               
+            }
+        }
+        
+        // Return results in the appropriate system format
         return DbResult.DB_OK;
     }
         
@@ -930,10 +999,10 @@ public class DatabaseManager
     // Provide the ID of the video and the ID of the customer. Both must be
     // valid input in order for the rental to to be returned.
     //--------------------------------------------------------------------------
-    public DbResult returnVideo(int videoId, int customerId)
+    public DbResult returnVideo(int rentalId)
     {
         // Verify input parameters
-        if(videoId < 1 || customerId < 1)
+        if(rentalId < 1)
         {
             return DbResult.DB_ERR_BAD_INPUT;
         }
@@ -957,6 +1026,13 @@ public class DatabaseManager
         }
         
         //TODO - Sprint 2 Functionality (gnelson)
+        /*
+        1. Get the rental transactions for this customer
+        2. Iterate over the results and if any are considered late, set
+           the late_fees_paid value to 1.
+        3. Profit!
+        */
+        
         return DbResult.DB_OK;
     }
 }

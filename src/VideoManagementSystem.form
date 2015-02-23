@@ -139,7 +139,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="207" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -183,7 +183,7 @@
                                   <Component id="addCustomerStateText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="addCustomerZipText" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="183" max="32767" attributes="0"/>
+                              <EmptySpace pref="191" max="32767" attributes="0"/>
                               <Component id="addCustomerButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -294,7 +294,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="431" max="32767" attributes="0"/>
+                              <EmptySpace pref="451" max="32767" attributes="0"/>
                               <Component id="removeCustomerDeleteButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -310,7 +310,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="removeCustomerDropDownList" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="380" max="32767" attributes="0"/>
+                              <EmptySpace pref="388" max="32767" attributes="0"/>
                               <Component id="removeCustomerDeleteButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -446,7 +446,7 @@
                                           <Component id="queryCustomerPhoneLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="queryCustomerPhoneNumberText" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace pref="36" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="queryCustomerIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="queryCustomerIDText" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -631,7 +631,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="429" max="32767" attributes="0"/>
+                              <EmptySpace pref="451" max="32767" attributes="0"/>
                               <Component id="addMovieButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
@@ -786,7 +786,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="429" max="32767" attributes="0"/>
+                              <EmptySpace pref="451" max="32767" attributes="0"/>
                               <Component id="removeMovieButton" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -868,7 +868,7 @@
                                               <Component id="queryMovieDirectorLabel" min="-2" pref="44" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="queryMovieDirectorText" min="-2" pref="115" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1095,7 +1095,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="transactionsSubTab" alignment="0" max="32767" attributes="0"/>
+                  <Component id="transactionsSubTab" alignment="0" pref="556" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -1125,7 +1125,32 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="transactionsCheckOutCustomerListPane" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jSeparator1" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="transactionsCheckOutLateFeeButton" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="transactionsCheckOutButton" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="labelCheckOutNamePrompt" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="labelCheckOutName" min="-2" pref="185" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="labelCheckOutIDPrompt" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="labelCheckOutID" min="-2" pref="185" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="labelVideosAvailabletoRent" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="queryCustomerTablePane1" min="-2" pref="515" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="transactionsCheckOutScrollBar" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1135,13 +1160,7 @@
                                       <Component id="transactionsCheckOutCustomerIDText" min="-2" pref="104" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="transactionsCheckOutSearchButton" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="245" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="transactionsCheckOutLateFeeButton" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="transactionsCheckOutButton" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1158,16 +1177,33 @@
                                   <Component id="transactionsCheckOutSearchButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="transactionsCheckOutScrollBar" max="32767" attributes="0"/>
-                                  <Component id="transactionsCheckOutCustomerListPane" pref="301" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                                      <Component id="transactionsCheckOutScrollBar" min="-2" pref="301" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="labelCheckOutNamePrompt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelCheckOutName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelCheckOutIDPrompt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelCheckOutID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="labelVideosAvailabletoRent" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="queryCustomerTablePane1" min="-2" pref="300" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="transactionsCheckOutButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="transactionsCheckOutLateFeeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="70" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="transactionsCheckOutButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="transactionsCheckOutLateFeeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1180,26 +1216,6 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="transactionsCheckOutCustomerIDText">
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="transactionsCheckOutCustomerListPane">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="transactionsCheckOutCustomerList">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="3">
-                                <StringItem index="0" value="List 1"/>
-                                <StringItem index="1" value="List 2"/>
-                                <StringItem index="2" value="List 3"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                        </Component>
-                      </SubComponents>
-                    </Container>
                     <Component class="javax.swing.JButton" name="transactionsCheckOutButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Check Out"/>
@@ -1210,7 +1226,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="transactionsCheckOutLateFeeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Late Fee"/>
+                        <Property name="label" type="java.lang.String" value="Pay Late Fees"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transactionsCheckOutLateFeeButtonActionPerformed"/>
@@ -1221,6 +1237,73 @@
                     <Component class="javax.swing.JButton" name="transactionsCheckOutSearchButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Search"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transactionsCheckOutSearchButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JSeparator" name="jSeparator1">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelCheckOutNamePrompt">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Customer Name:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelCheckOutName">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="[Search Required]"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelVideosAvailabletoRent">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Videos Available to Rent:"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="queryCustomerTablePane1">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="transactionsCheckOutCustomerList">
+                          <Properties>
+                            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="2" rowCount="0">
+                                <Column editable="false" title="ID" type="java.lang.String"/>
+                                <Column editable="false" title="Name" type="java.lang.String"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="40" minWidth="10" prefWidth="30" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JLabel" name="labelCheckOutIDPrompt">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="ID:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="labelCheckOutID">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="[Search Required]"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1237,21 +1320,18 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="323" max="32767" attributes="0"/>
-                                      <Component id="transactionsCheckInLateFeeButton" min="-2" pref="90" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="transactionsCheckInLateFeeButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="transactionsCheckInButton" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jScrollPane3" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollBar2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="queryCustomerTablePane2" min="-2" pref="515" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jScrollBar2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1260,41 +1340,23 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jScrollPane3" pref="363" max="32767" attributes="0"/>
-                                  <Component id="jScrollBar2" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollBar2" min="-2" pref="363" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="queryCustomerTablePane2" min="-2" pref="392" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="transactionsCheckInButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="transactionsCheckInLateFeeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="37" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="transactionsCheckInButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="transactionsCheckInLateFeeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="jList3">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="3">
-                                <StringItem index="0" value="List 1"/>
-                                <StringItem index="1" value="List 2"/>
-                                <StringItem index="2" value="List 3"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                        </Component>
-                      </SubComponents>
-                    </Container>
                     <Component class="javax.swing.JButton" name="transactionsCheckInButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Check In"/>
@@ -1305,7 +1367,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="transactionsCheckInLateFeeButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Late Fee"/>
+                        <Property name="text" type="java.lang.String" value="Pay Late Fees"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transactionsCheckInLateFeeButtonActionPerformed"/>
@@ -1313,6 +1375,47 @@
                     </Component>
                     <Component class="javax.swing.JScrollBar" name="jScrollBar2">
                     </Component>
+                    <Container class="javax.swing.JScrollPane" name="queryCustomerTablePane2">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="transactionsCheckInList">
+                          <Properties>
+                            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="6" rowCount="0">
+                                <Column editable="false" title="#" type="java.lang.String"/>
+                                <Column editable="false" title="Late?" type="java.lang.String"/>
+                                <Column editable="true" title="CustomerID" type="java.lang.Object"/>
+                                <Column editable="false" title="Customer Name" type="java.lang.String"/>
+                                <Column editable="false" title="Movie Title" type="java.lang.String"/>
+                                <Column editable="false" title="Date Out" type="java.lang.String"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="40" minWidth="10" prefWidth="30" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>

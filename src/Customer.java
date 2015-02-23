@@ -3,6 +3,15 @@
  * Representation of a single customer in the Video Rental Management System.
  */
 
+/*
+REVISION TABLE:
+
+--------------------------------------------------------------------------------
+DATE                NAME                    CHANGE DESCRIPTION
+--------------------------------------------------------------------------------
+2/16/15             Georgia Nelson          File created.
+*/
+
 public class Customer 
 {
     //--------------------------------------------------------------------------

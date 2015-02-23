@@ -1,11 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+REVISION TABLE:
+
+--------------------------------------------------------------------------------
+DATE                NAME                    CHANGE DESCRIPTION
+--------------------------------------------------------------------------------
+2/16/15             Larry Barker            File created.
+2/23/15             Georgia Nelson          Adding initial support for check out
+*/
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +33,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         initComponents();
         updateDropDowns();
         updateMovieDropDowns();
+        updateRentalTransactionsTable();
         //updateQueryMovieList();
         
         
@@ -146,18 +154,24 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         transactionsCheckOutTab = new javax.swing.JPanel();
         transactionsCheckOutCustomerIDLabel = new javax.swing.JLabel();
         transactionsCheckOutCustomerIDText = new javax.swing.JTextField();
-        transactionsCheckOutCustomerListPane = new javax.swing.JScrollPane();
-        transactionsCheckOutCustomerList = new javax.swing.JList();
         transactionsCheckOutButton = new javax.swing.JButton();
         transactionsCheckOutLateFeeButton = new javax.swing.JButton();
         transactionsCheckOutScrollBar = new javax.swing.JScrollBar();
         transactionsCheckOutSearchButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        labelCheckOutNamePrompt = new javax.swing.JLabel();
+        labelCheckOutName = new javax.swing.JLabel();
+        labelVideosAvailabletoRent = new javax.swing.JLabel();
+        queryCustomerTablePane1 = new javax.swing.JScrollPane();
+        transactionsCheckOutCustomerList = new javax.swing.JTable();
+        labelCheckOutIDPrompt = new javax.swing.JLabel();
+        labelCheckOutID = new javax.swing.JLabel();
         transactionsCheckInTab = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
         transactionsCheckInButton = new javax.swing.JButton();
         transactionsCheckInLateFeeButton = new javax.swing.JButton();
         jScrollBar2 = new javax.swing.JScrollBar();
+        queryCustomerTablePane2 = new javax.swing.JScrollPane();
+        transactionsCheckInList = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Video Rental Program Group 5");
@@ -255,7 +269,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                                 .addGroup(customerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(addCustomerZipLabel)
                                     .addComponent(addCustomerZipText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 187, Short.MAX_VALUE)))
+                        .addGap(0, 207, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         customerAddLayout.setVerticalGroup(
@@ -291,7 +305,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                     .addComponent(addCustomerCityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addCustomerStateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addCustomerZipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(addCustomerButton)
                 .addContainerGap())
         );
@@ -316,7 +330,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         customerDeleteLayout.setHorizontalGroup(
             customerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerDeleteLayout.createSequentialGroup()
-                .addContainerGap(431, Short.MAX_VALUE)
+                .addContainerGap(451, Short.MAX_VALUE)
                 .addComponent(removeCustomerDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(customerDeleteLayout.createSequentialGroup()
@@ -329,7 +343,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerDeleteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(removeCustomerDropDownList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
                 .addComponent(removeCustomerDeleteButton)
                 .addContainerGap())
         );
@@ -604,7 +618,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                             .addComponent(queryCustomerZipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(queryCustomerPhoneLabel)
                             .addComponent(queryCustomerPhoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(queryCustomerIDLabel)
                             .addComponent(queryCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -664,7 +678,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         movieAddLayout.setHorizontalGroup(
             movieAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieAddLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
+                .addContainerGap(451, Short.MAX_VALUE)
                 .addComponent(addMovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
             .addGroup(movieAddLayout.createSequentialGroup()
@@ -745,7 +759,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         movieRemoveLayout.setHorizontalGroup(
             movieRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieRemoveLayout.createSequentialGroup()
-                .addContainerGap(429, Short.MAX_VALUE)
+                .addContainerGap(451, Short.MAX_VALUE)
                 .addComponent(removeMovieButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(movieRemoveLayout.createSequentialGroup()
@@ -970,7 +984,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                                 .addComponent(queryMovieDirectorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieDirectorText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 14, Short.MAX_VALUE))
+                                .addGap(0, 36, Short.MAX_VALUE))
                             .addGroup(movieQueryLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(queryMovieSaveChangesButton)
@@ -1055,13 +1069,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         transactionsCheckOutCustomerIDLabel.setText("Customer ID");
 
-        transactionsCheckOutCustomerList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "List 1", "List 2", "List 3" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        transactionsCheckOutCustomerListPane.setViewportView(transactionsCheckOutCustomerList);
-
         transactionsCheckOutButton.setText("Check Out");
         transactionsCheckOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1069,7 +1076,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
-        transactionsCheckOutLateFeeButton.setText("Late Fee");
+        transactionsCheckOutLateFeeButton.setLabel("Pay Late Fees");
         transactionsCheckOutLateFeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transactionsCheckOutLateFeeButtonActionPerformed(evt);
@@ -1077,6 +1084,54 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         });
 
         transactionsCheckOutSearchButton.setText("Search");
+        transactionsCheckOutSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transactionsCheckOutSearchButtonActionPerformed(evt);
+            }
+        });
+
+        labelCheckOutNamePrompt.setText("Customer Name:");
+
+        labelCheckOutName.setText("[Search Required]");
+
+        labelVideosAvailabletoRent.setText("Videos Available to Rent:");
+
+        transactionsCheckOutCustomerList.setAutoCreateRowSorter(true);
+        transactionsCheckOutCustomerList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        transactionsCheckOutCustomerList.getTableHeader().setReorderingAllowed(false);
+        queryCustomerTablePane1.setViewportView(transactionsCheckOutCustomerList);
+        if (transactionsCheckOutCustomerList.getColumnModel().getColumnCount() > 0) {
+            transactionsCheckOutCustomerList.getColumnModel().getColumn(0).setMinWidth(10);
+            transactionsCheckOutCustomerList.getColumnModel().getColumn(0).setPreferredWidth(30);
+            transactionsCheckOutCustomerList.getColumnModel().getColumn(0).setMaxWidth(40);
+            transactionsCheckOutCustomerList.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        labelCheckOutIDPrompt.setText("ID:");
+
+        labelCheckOutID.setText("[Search Required]");
 
         javax.swing.GroupLayout transactionsCheckOutTabLayout = new javax.swing.GroupLayout(transactionsCheckOutTab);
         transactionsCheckOutTab.setLayout(transactionsCheckOutTabLayout);
@@ -1086,7 +1141,26 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
-                        .addComponent(transactionsCheckOutCustomerListPane)
+                        .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
+                                .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
+                                        .addComponent(transactionsCheckOutLateFeeButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(transactionsCheckOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
+                                            .addComponent(labelCheckOutNamePrompt)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(labelCheckOutName, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(labelCheckOutIDPrompt)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(labelCheckOutID, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(labelVideosAvailabletoRent)
+                                        .addComponent(queryCustomerTablePane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transactionsCheckOutScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
@@ -1095,12 +1169,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addComponent(transactionsCheckOutCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transactionsCheckOutSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 245, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsCheckOutTabLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(transactionsCheckOutLateFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(transactionsCheckOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         transactionsCheckOutTabLayout.setVerticalGroup(
@@ -1112,24 +1181,31 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                     .addComponent(transactionsCheckOutCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(transactionsCheckOutSearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(transactionsCheckOutScrollBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(transactionsCheckOutCustomerListPane, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transactionsCheckOutButton)
-                    .addComponent(transactionsCheckOutLateFeeButton))
-                .addContainerGap())
+                .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
+                        .addGap(0, 12, Short.MAX_VALUE)
+                        .addComponent(transactionsCheckOutScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100))
+                    .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCheckOutNamePrompt)
+                            .addComponent(labelCheckOutName)
+                            .addComponent(labelCheckOutIDPrompt)
+                            .addComponent(labelCheckOutID))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelVideosAvailabletoRent)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(queryCustomerTablePane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(transactionsCheckOutButton)
+                            .addComponent(transactionsCheckOutLateFeeButton))
+                        .addContainerGap())))
         );
 
         transactionsSubTab.addTab("Check Out", transactionsCheckOutTab);
-
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "List 1", "List 2", "List 3" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList3);
 
         transactionsCheckInButton.setText("Check In");
         transactionsCheckInButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1138,12 +1214,45 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
-        transactionsCheckInLateFeeButton.setText("Late Fee");
+        transactionsCheckInLateFeeButton.setText("Pay Late Fees");
         transactionsCheckInLateFeeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transactionsCheckInLateFeeButtonActionPerformed(evt);
             }
         });
+
+        transactionsCheckInList.setAutoCreateRowSorter(true);
+        transactionsCheckInList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#", "Late?", "CustomerID", "Customer Name", "Movie Title", "Date Out"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        transactionsCheckInList.getTableHeader().setReorderingAllowed(false);
+        queryCustomerTablePane2.setViewportView(transactionsCheckInList);
+        if (transactionsCheckInList.getColumnModel().getColumnCount() > 0) {
+            transactionsCheckInList.getColumnModel().getColumn(0).setMinWidth(10);
+            transactionsCheckInList.getColumnModel().getColumn(0).setPreferredWidth(30);
+            transactionsCheckInList.getColumnModel().getColumn(0).setMaxWidth(40);
+            transactionsCheckInList.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         javax.swing.GroupLayout transactionsCheckInTabLayout = new javax.swing.GroupLayout(transactionsCheckInTab);
         transactionsCheckInTab.setLayout(transactionsCheckInTabLayout);
@@ -1151,30 +1260,29 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsCheckInTabLayout.createSequentialGroup()
-                        .addGap(0, 323, Short.MAX_VALUE)
-                        .addComponent(transactionsCheckInLateFeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
+                        .addComponent(transactionsCheckInLateFeeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transactionsCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(queryCustomerTablePane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         transactionsCheckInTabLayout.setVerticalGroup(
             transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
-                    .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transactionsCheckInButton)
-                    .addComponent(transactionsCheckInLateFeeButton))
-                .addContainerGap())
+                .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
+                        .addComponent(queryCustomerTablePane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(transactionsCheckInButton)
+                            .addComponent(transactionsCheckInLateFeeButton))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         transactionsSubTab.addTab("Check In", transactionsCheckInTab);
@@ -1183,7 +1291,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         mainTransactionsTab.setLayout(mainTransactionsTabLayout);
         mainTransactionsTabLayout.setHorizontalGroup(
             mainTransactionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(transactionsSubTab)
+            .addComponent(transactionsSubTab, javax.swing.GroupLayout.PREFERRED_SIZE, 556, Short.MAX_VALUE)
         );
         mainTransactionsTabLayout.setVerticalGroup(
             mainTransactionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1254,10 +1362,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryMovieIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieIDTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_queryMovieIDTextActionPerformed
-
-    private void transactionsCheckInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transactionsCheckInButtonActionPerformed
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
         // Testing error popup
@@ -1485,16 +1589,80 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_queryMovieSaveChangesButtonActionPerformed
 
     private void transactionsCheckOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutButtonActionPerformed
-        // TODO add your handling code here:
+                                                 
+        // ASSUMPTIONS: 
+        //      1. The check out button isn't active unless the searched customer
+        //         has a clean account with no late fees.
+        //      2. A customer has been searched for, but we still check for
+        //         validity, because users suck.
+        
+        // Fetch the customer details from the label and make sure they're
+        // still valid.
+        String customerIdValue = labelCheckOutID.getText();        
+        if(customerIdValue == null || customerIdValue.compareTo("[Search Required]") == 0)
+        {
+            errorBox("No valid customer is active in this search. Please enter a correct customer ID.", "Check Out Error");
+            return;
+        }
+        
+        // Get the selected video ID from the list
+        int selectedRowIndex = transactionsCheckOutCustomerList.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            errorBox("No selection was made! Cannot check out.", "Check Out Error");
+            return;
+        }
+        
+        String selectedVideoId = (String) transactionsCheckOutCustomerList.getModel().getValueAt(selectedRowIndex, 0);
+        
+        // Perform the check out function
+        DatabaseManager.DbResult result = m_databaseManager.rentVideo(Integer.parseInt(selectedVideoId), Integer.parseInt(customerIdValue));
+        if(result != DatabaseManager.DbResult.DB_OK)
+        {
+            errorBox("There was an error trying to check out the video to this customer.", "Check Out Error");
+            return;
+        }
+        
+        // Update the table based on the previous search data
+        updateCheckOutScreen();
+        
+        // Notify of success
+        infoBox("The video was successfully rented!", "Check Out");
     }//GEN-LAST:event_transactionsCheckOutButtonActionPerformed
 
     private void transactionsCheckOutLateFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutLateFeeButtonActionPerformed
-        // TODO add your handling code here:
+                                
+        // ASSUMPTIONS: 
+        //      1. The late fee button isn't active unless the searched customer
+        //         has late fees on his/her account.
+        //      2. A customer has been searched for, but we still check for
+        //         validity, because users suck.
+        
+        // Fetch the customer details from the label and make sure they're
+        // still valid.
+        String customerIdValue = labelCheckOutID.getText();        
+        if(customerIdValue == null || customerIdValue.compareTo("[Search Required]") == 0)
+        {
+            errorBox("No valid customer is active in this search. Please enter a correct customer ID.", "Check Out Error");
+            return;
+        }
+        
+        // Pay the late fees for this customer.
+        // Assumption: The customer has paid via another system independent
+        // of this video rental management system!
+        DatabaseManager.DbResult result = m_databaseManager.payLateFees(Integer.parseInt(customerIdValue));
+        if(result != DatabaseManager.DbResult.DB_OK)
+        {
+            errorBox("There was an error trying to pay late fees for this customer.", "Check Out Error");
+            return;
+        }
+        
+        // Update the table based on the previous search data
+        updateCheckOutScreen();
+        
+        // Notify of success
+        infoBox("Late fees successfully paid for this customer's outstanding rentals.", "Check Out");
     }//GEN-LAST:event_transactionsCheckOutLateFeeButtonActionPerformed
-
-    private void transactionsCheckInLateFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInLateFeeButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transactionsCheckInLateFeeButtonActionPerformed
 
     private void queryMovieSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSearchButtonActionPerformed
         // TODO Errors on selected a empty row
@@ -1631,19 +1799,81 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryCustomerCityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerCityTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_queryCustomerCityTextActionPerformed
+
+    private void transactionsCheckOutSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutSearchButtonActionPerformed
+       
+        // Update the available rentals list
+        updateCheckOutScreen();
+            
+        // Notify search and populate success
+        infoBox("Customer successfully located. Select an available video in the list and then press Check Out.", "Check Out");
+    }//GEN-LAST:event_transactionsCheckOutSearchButtonActionPerformed
+
+    private void transactionsCheckInLateFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInLateFeeButtonActionPerformed
+        int selectedRowIndex = transactionsCheckInList.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            errorBox("No selection was made! Cannot pay late fees.", "Check In Error");
+            return;
+        }
+        
+        // Make sure we're trying to pay late fees on something that is 
+        // actually late
+        String selectedIsLate = (String) transactionsCheckInList.getModel().getValueAt(selectedRowIndex, 1);
+        if(selectedIsLate == null || selectedIsLate.compareTo("No") == 0)
+        {
+            errorBox("This rental is not late. You cannot pay late fees for it.", "Check In Error");
+            return;
+        }
+        
+        String selectedCustomerId = (String) transactionsCheckInList.getModel().getValueAt(selectedRowIndex, 2);
+        
+        DatabaseManager.DbResult result = m_databaseManager.payLateFees(Integer.parseInt(selectedCustomerId));
+        if(result != DatabaseManager.DbResult.DB_OK)
+        {
+            errorBox("There was an error trying to pay late fees for this customer.", "Check In Error");
+            return;
+        }
+        
+        // Notify of success
+        infoBox("Late fees successfully paid for this customer's outstanding rentals.", "Check In");
+        
+        // Update the table
+        updateRentalTransactionsTable();
+    }//GEN-LAST:event_transactionsCheckInLateFeeButtonActionPerformed
+
+    private void transactionsCheckInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInButtonActionPerformed
+        int selectedRowIndex = transactionsCheckInList.getSelectedRow();
+        if(selectedRowIndex < 0)
+        {
+            errorBox("No selection was made! Cannot check in.", "Check In Error");
+            return;
+        }
+        
+        String selectedRentalId = (String) transactionsCheckInList.getModel().getValueAt(selectedRowIndex, 0);
+        DatabaseManager.DbResult result = m_databaseManager.returnVideo(Integer.parseInt(selectedRentalId));
+        if(result != DatabaseManager.DbResult.DB_OK)
+        {
+            errorBox("Unable to return selected video. Make sure the customer doesn't have late fees!", "Check In Error");
+            return;
+        }
+        
+        // Notify of success
+        infoBox("Successful return of the video has been completed.", "Check In");
+    }//GEN-LAST:event_transactionsCheckInButtonActionPerformed
     
     public void updateDropDowns() {
         removeCustomerDropDownList.removeAllItems();
         clearCustomerTable();
         ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
-        int i=0;
         for(Customer customer : queryCustomerTest) {
             //System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
             removeCustomerDropDownList.addItem(customer.m_firstName + " " + customer.m_lastName + ":" + customer.m_id);
             
-            queryCustomerTableList.getModel().setValueAt(String.valueOf(customer.m_id), i, 0);
-            queryCustomerTableList.getModel().setValueAt(customer.m_firstName + " " + customer.m_lastName, i, 1);
-            i++;
+            String customerId = String.valueOf(customer.m_id);
+            String customerName = customer.m_firstName + " " + customer.m_lastName;
+            DefaultTableModel model = (DefaultTableModel) queryCustomerTableList.getModel();
+            model.addRow(new Object[]{customerId, customerName});
         }
     }
     
@@ -1651,40 +1881,202 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         removeMovieComboBox.removeAllItems();
         clearTable();
         ArrayList<Video> queryVideoTest = m_databaseManager.searchVideos(false, 0, null, null, null, null, null, null);
-        int i=0;
         for(Video video : queryVideoTest)
         {
             //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
             removeMovieComboBox.addItem(video.m_title + ":" + video.m_id);
             
-            queryMovieTableList.getModel().setValueAt(String.valueOf(video.m_id), i, 0);
-            queryMovieTableList.getModel().setValueAt(video.m_title, i, 1);
-            i++;
+            String videoId = String.valueOf(video.m_id);
+            String videoTitle = video.m_title;
+            DefaultTableModel model = (DefaultTableModel) queryMovieTableList.getModel();
+            model.addRow(new Object[]{videoId, videoTitle});
         } 
-    }
+    }    
     
-   
-    public void clearTable(){
-        for (int i = 0; i < queryMovieTableList.getRowCount(); i++){
-            for(int j = 0; j < queryMovieTableList.getColumnCount(); j++) {
-                queryMovieTableList.setValueAt("", i, j);
+    public void updateCheckOutScreen() {
+        // Clear previous results and reset buttons
+        clearCheckOutTable();
+        transactionsCheckOutLateFeeButton.setEnabled(false);
+        transactionsCheckOutButton.setEnabled(false);
+        
+        // Get the ID for the search
+        String customerIDText = transactionsCheckOutCustomerIDText.getText();
+        if(customerIDText == null || customerIDText.length() < 1 || customerIDText.compareTo("0") == 0)
+        {
+            errorBox("No suitable ID was provided for this customer. Please try again.", "Check Out Error");
+            labelCheckOutName.setText("[Search Required]");
+            labelCheckOutID.setText("[Search Required]");
+            return;
+        }
+        
+        // Perform the query
+        ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(customerIDText), null, null, null);
+        
+        if(queryTheCustomer.size() == 0)
+        {
+            errorBox("No customers were found with that ID. Please try again.", "Check Out Error");
+            transactionsCheckOutCustomerIDText.setText("");
+            labelCheckOutName.setText("[Search Required]");
+            labelCheckOutID.setText("[Search Required]");
+            return;
+        }
+        
+        // It is a fair assumption that only 1 will be returned since we're 
+        // querying by ID.
+        for(Customer customer : queryTheCustomer)
+        {
+            // Make sure this customer doesn't have maximum rentals allowed,
+            // or any late fees associated with them.
+            ArrayList<Rental> customerRentals = m_databaseManager.getRentalTransactions(0, customer.m_id);
+            if(customerRentals.size() >= MAX_ALLOWED_RENTALS)
+            {
+                errorBox("This customer already has 3 or more rentals checked out at this time and cannot rent any more.", "Check Out Error");
+                transactionsCheckOutCustomerIDText.setText("");
+                labelCheckOutName.setText("[Search Required]");
+                labelCheckOutID.setText("[Search Required]");
+                return;
+            }
+            
+            Date currentDate = new Date();
+            for(Rental rental : customerRentals)
+            {
+                long difference = currentDate.getTime() - rental.m_dateOut.getTime();
+                long differenceInDays = TimeUnit.MILLISECONDS.toDays(difference);
+                
+                if(differenceInDays >= MAX_ALLOWED_CHECK_OUT_TIME && rental.m_lateFeesPaid != 0)
+                {
+                    errorBox("This customer has late fees and cannot rent until they are paid.", "Check Out Error");
+                    // Don't clear the results, because the user can then press the
+                    // Late Fees button to pay them directly from this screen.
+                    transactionsCheckOutLateFeeButton.setEnabled(true);
+                    return;
+                }
+            }
+            
+            // Everything is good, so go ahead and update the screen with
+            // this customer's name and populate the list with available 
+            // inventory.
+            labelCheckOutName.setText(customer.m_firstName + " " + customer.m_lastName);
+            labelCheckOutID.setText(String.valueOf(customer.m_id));
+        }
+        
+        // Now search for videos that still have inventory available. We do
+        // this by searching for the movies first, then another search in
+        // the rental transactions for the checked out count to see if we have
+        // any available at the moment. Only fill the list with those that have
+        // available inventory.
+        ArrayList<Video> availableVideos = m_databaseManager.searchVideos(false, 0, null, null, null, null, null, null);
+        
+        // Make sure we have videos to rent
+        if(availableVideos.isEmpty())
+        {
+            errorBox("No videos are available to rent at this time.", "Check Out Error");
+            return;
+        }
+        
+        // Populate the list with the results
+        transactionsCheckOutButton.setEnabled(true);
+        for(Video video : availableVideos)
+        {
+            int totalInventoryCount = video.m_totalNumberOfMovies;
+            
+            ArrayList<Rental> rentedVideos = m_databaseManager.getRentalTransactions(video.m_id, 0);
+            int rentedCount = rentedVideos.size();
+            int availableCount = totalInventoryCount - rentedCount;
+            
+            if(availableCount > 0)
+            {            
+                String videoId = String.valueOf(video.m_id);
+                String videoTitle = video.m_title;
+                DefaultTableModel model = (DefaultTableModel) transactionsCheckOutCustomerList.getModel();
+                model.addRow(new Object[]{videoId, videoTitle});
             }
         }
+    }
+    
+    public void updateRentalTransactionsTable() {
+        clearRentalTransactionsTable();    
+        transactionsCheckInButton.setEnabled(false);
+        transactionsCheckInLateFeeButton.setEnabled(false);
+        
+        DefaultTableModel model = (DefaultTableModel) transactionsCheckInList.getModel();
+        
+        // Fetch all rental transactions and put them into the table
+        ArrayList<Rental> rentals = m_databaseManager.getRentalTransactions(0, 0);
+        for(Rental rental : rentals)
+        {
+            String rentalId = String.valueOf(rental.m_id);
+            String customerId = String.valueOf(rental.m_customerId);
+            String videoId = String.valueOf(rental.m_movieId);
+            String dateOut = rental.m_dateOut.toString();
+            String customerName = "";
+            String videoName = "";
+            
+            // Get the customer name and movie name
+            ArrayList<Customer> customerData = m_databaseManager.searchCustomers(true, rental.m_customerId, null, null, null);
+            for(Customer customer : customerData)
+            {
+                customerName = customer.m_firstName + " " + customer.m_lastName;
+            }
+            
+            ArrayList<Video> videoData = m_databaseManager.searchVideos(true, rental.m_movieId, null, null, null, null, null, null);
+            for(Video video : videoData)
+            {
+                videoName = video.m_title;
+            }
+            
+            // See if this one is late.
+            String lateStatus = "No";
+            Date currentDate = new Date();
+            long difference = currentDate.getTime() - rental.m_dateOut.getTime();
+            long differenceInDays = TimeUnit.MILLISECONDS.toDays(difference);
+            if(differenceInDays >= MAX_ALLOWED_CHECK_OUT_TIME && rental.m_lateFeesPaid != 0)
+            {
+                lateStatus = "Yes";
+            }
+            
+            model.addRow(new Object[]{rentalId, lateStatus, String.valueOf(customerId), customerName, videoName, dateOut});
+        }
+        
+        if(!rentals.isEmpty())
+        {
+            transactionsCheckInButton.setEnabled(true);
+            transactionsCheckInLateFeeButton.setEnabled(true);
+        }
+    }
+   
+    public void clearTable(){
+        DefaultTableModel model = (DefaultTableModel) queryMovieTableList.getModel();
+        model.setRowCount(0);
+        queryMovieTableList.revalidate();
     }
     
     public void clearCustomerTable(){
-        for (int i = 0; i < queryCustomerTableList.getRowCount(); i++){
-            for(int j = 0; j < queryCustomerTableList.getColumnCount(); j++) {
-                queryCustomerTableList.setValueAt("", i, j);
-            }
-        }
+        DefaultTableModel model = (DefaultTableModel) queryCustomerTableList.getModel();
+        model.setRowCount(0);
+        queryCustomerTableList.revalidate();
     }
+    
+    public void clearCheckOutTable(){
+        DefaultTableModel model = (DefaultTableModel) transactionsCheckOutCustomerList.getModel();
+        model.setRowCount(0);
+        transactionsCheckOutCustomerList.revalidate();
+    }
+    
+    public void clearRentalTransactionsTable() {
+        DefaultTableModel model = (DefaultTableModel) transactionsCheckInList.getModel();
+        model.setRowCount(0);
+        transactionsCheckInList.revalidate();
+    }
+    
     /**
      * @param args the command line arguments
      */
     
     public static void main(String[] args) 
     {
+        // Create a new DatabaseManager to give us access to the
+        // MySQL Back-End subsystem
          m_databaseManager =
                 new DatabaseManager("jdbc:mysql://db152b.pair.com/travin_cmsc495",
                 "travin_14",
@@ -1723,14 +2115,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 new VideoManagementSystem(m_databaseManager).setVisible(true);
             }
         });
-        // Create a new DatabaseManager to give us access to the
-        // MySQL Back-End subsystem
-       
-        
-        // Run some simple tests. This should be removed in the final
-        // application/submission and is only meant to be run during
-        // development.
-        //runTests(); //TODO - remove before final submission
     }
     
     ///////////////////////////////////////////////////////////////////
@@ -2145,6 +2529,14 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     //
     ///////////////////////////////////////////////////////////////////
     
+    // Private variable for maximum # of videos allowed out at any time by
+    // a single customer
+    private final int MAX_ALLOWED_RENTALS = 3;
+    
+    // Private variable for maximum # of days allowed to rent before late
+    // fees are applied
+    private final int MAX_ALLOWED_CHECK_OUT_TIME = 2;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addCustomerAddressLabel;
     private javax.swing.JButton addCustomerButton;
@@ -2183,9 +2575,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JPanel customerQuery;
     private javax.swing.JTabbedPane customerSubTabs;
     private javax.swing.JTabbedPane inventorySubTabs;
-    private javax.swing.JList jList3;
     private javax.swing.JScrollBar jScrollBar2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labelCheckOutID;
+    private javax.swing.JLabel labelCheckOutIDPrompt;
+    private javax.swing.JLabel labelCheckOutName;
+    private javax.swing.JLabel labelCheckOutNamePrompt;
+    private javax.swing.JLabel labelVideosAvailabletoRent;
     private javax.swing.JPanel mainCustomerTab;
     private javax.swing.JPanel mainInventoryTab;
     private javax.swing.JTabbedPane mainTabPanel;
@@ -2211,6 +2607,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JLabel queryCustomerStreetLabel;
     private javax.swing.JTable queryCustomerTableList;
     private javax.swing.JScrollPane queryCustomerTablePane;
+    private javax.swing.JScrollPane queryCustomerTablePane1;
+    private javax.swing.JScrollPane queryCustomerTablePane2;
     private javax.swing.JLabel queryCustomerZipLabel;
     private javax.swing.JTextField queryCustomerZipText;
     private javax.swing.JLabel queryMovieDirectorLabel;
@@ -2239,12 +2637,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JComboBox removeMovieComboBox;
     private javax.swing.JButton transactionsCheckInButton;
     private javax.swing.JButton transactionsCheckInLateFeeButton;
+    private javax.swing.JTable transactionsCheckInList;
     private javax.swing.JPanel transactionsCheckInTab;
     private javax.swing.JButton transactionsCheckOutButton;
     private javax.swing.JLabel transactionsCheckOutCustomerIDLabel;
     private javax.swing.JTextField transactionsCheckOutCustomerIDText;
-    private javax.swing.JList transactionsCheckOutCustomerList;
-    private javax.swing.JScrollPane transactionsCheckOutCustomerListPane;
+    private javax.swing.JTable transactionsCheckOutCustomerList;
     private javax.swing.JButton transactionsCheckOutLateFeeButton;
     private javax.swing.JScrollBar transactionsCheckOutScrollBar;
     private javax.swing.JButton transactionsCheckOutSearchButton;
