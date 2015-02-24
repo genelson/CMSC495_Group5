@@ -26,6 +26,7 @@ DATE                NAME                    CHANGE DESCRIPTION
 --------------------------------------------------------------------------------
 2/16/15             Georgia Nelson          File created.
 2/19/15             Georgia Nelson          Modifying sort of video search.
+2/24/15             Georgia Nelson          Removing late fees references.
 */
 
 public class DatabaseManager 
@@ -56,7 +57,6 @@ public class DatabaseManager
         DB_ERR_HAS_RENTALS,
         DB_ERR_NOT_AVAILABLE,
         DB_ERR_AT_RENTAL_LIMIT,
-        DB_ERR_HAS_LATE_FEES,
         DB_ERR_ALREADY_RENTED
     }
     
@@ -845,7 +845,7 @@ public class DatabaseManager
         }
         
         /*
-        //TODO: Now check that there are no outstanding rentals or late fees
+        //TODO: Now check that there are no outstanding rentals
         //      on this customer before deleting. Can check by pulling the
         //      rental transactions and seeing if any are there at all and open.
         //Sprint 2 Functionality (gnelson)
@@ -1008,31 +1008,6 @@ public class DatabaseManager
         }
         
         //TODO - Sprint 2 Functionality (gnelson)
-        return DbResult.DB_OK;
-    }
-        
-    //--------------------------------------------------------------------------
-    // Pay Late Fees
-    // Pulls a list of transactions by the customer that have late fees
-    // associated with them due to the lapse of time from the original 
-    // check-out date and marks them as paid.
-    //--------------------------------------------------------------------------
-    public DbResult payLateFees(int customerId)
-    {
-        // Verify input parameters
-        if(customerId < 1)
-        {
-            return DbResult.DB_ERR_BAD_INPUT;
-        }
-        
-        //TODO - Sprint 2 Functionality (gnelson)
-        /*
-        1. Get the rental transactions for this customer
-        2. Iterate over the results and if any are considered late, set
-           the late_fees_paid value to 1.
-        3. Profit!
-        */
-        
         return DbResult.DB_OK;
     }
 }

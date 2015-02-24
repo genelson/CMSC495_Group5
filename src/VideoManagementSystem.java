@@ -6,6 +6,7 @@ DATE                NAME                    CHANGE DESCRIPTION
 --------------------------------------------------------------------------------
 2/16/15             Larry Barker            File created.
 2/23/15             Georgia Nelson          Adding initial support for check out
+2/24/15             Georgia Nelson          Removing late fees references
 */
 
 import java.util.ArrayList;
@@ -155,7 +156,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         transactionsCheckOutCustomerIDLabel = new javax.swing.JLabel();
         transactionsCheckOutCustomerIDText = new javax.swing.JTextField();
         transactionsCheckOutButton = new javax.swing.JButton();
-        transactionsCheckOutLateFeeButton = new javax.swing.JButton();
         transactionsCheckOutScrollBar = new javax.swing.JScrollBar();
         transactionsCheckOutSearchButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -168,7 +168,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         labelCheckOutID = new javax.swing.JLabel();
         transactionsCheckInTab = new javax.swing.JPanel();
         transactionsCheckInButton = new javax.swing.JButton();
-        transactionsCheckInLateFeeButton = new javax.swing.JButton();
         jScrollBar2 = new javax.swing.JScrollBar();
         queryCustomerTablePane2 = new javax.swing.JScrollPane();
         transactionsCheckInList = new javax.swing.JTable();
@@ -1076,13 +1075,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
-        transactionsCheckOutLateFeeButton.setLabel("Pay Late Fees");
-        transactionsCheckOutLateFeeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transactionsCheckOutLateFeeButtonActionPerformed(evt);
-            }
-        });
-
         transactionsCheckOutSearchButton.setText("Search");
         transactionsCheckOutSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1145,10 +1137,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                             .addComponent(jSeparator1)
                             .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
                                 .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
-                                        .addComponent(transactionsCheckOutLateFeeButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(transactionsCheckOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(transactionsCheckOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
                                             .addComponent(labelCheckOutNamePrompt)
@@ -1183,7 +1172,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
-                        .addGap(0, 12, Short.MAX_VALUE)
+                        .addGap(0, 4, Short.MAX_VALUE)
                         .addComponent(transactionsCheckOutScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100))
                     .addGroup(transactionsCheckOutTabLayout.createSequentialGroup()
@@ -1199,9 +1188,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(queryCustomerTablePane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(transactionsCheckOutTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(transactionsCheckOutButton)
-                            .addComponent(transactionsCheckOutLateFeeButton))
+                        .addComponent(transactionsCheckOutButton)
                         .addContainerGap())))
         );
 
@@ -1214,27 +1201,20 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
-        transactionsCheckInLateFeeButton.setText("Pay Late Fees");
-        transactionsCheckInLateFeeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transactionsCheckInLateFeeButtonActionPerformed(evt);
-            }
-        });
-
         transactionsCheckInList.setAutoCreateRowSorter(true);
         transactionsCheckInList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "#", "Late?", "CustomerID", "Customer Name", "Movie Title", "Date Out"
+                "#", "CustomerID", "Customer Name", "Movie Title", "Date Out"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false
+                false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1261,10 +1241,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
-                        .addComponent(transactionsCheckInLateFeeButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(transactionsCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(transactionsCheckInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(queryCustomerTablePane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1279,10 +1256,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                     .addGroup(transactionsCheckInTabLayout.createSequentialGroup()
                         .addComponent(queryCustomerTablePane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(transactionsCheckInTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(transactionsCheckInButton)
-                            .addComponent(transactionsCheckInLateFeeButton))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(transactionsCheckInButton)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         transactionsSubTab.addTab("Check In", transactionsCheckInTab);
@@ -1592,7 +1567,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                                                  
         // ASSUMPTIONS: 
         //      1. The check out button isn't active unless the searched customer
-        //         has a clean account with no late fees.
+        //         has a clean account with available space for rental (e.g. not more than 3).
         //      2. A customer has been searched for, but we still check for
         //         validity, because users suck.
         
@@ -1629,40 +1604,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         // Notify of success
         infoBox("The video was successfully rented!", "Check Out");
     }//GEN-LAST:event_transactionsCheckOutButtonActionPerformed
-
-    private void transactionsCheckOutLateFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutLateFeeButtonActionPerformed
-                                
-        // ASSUMPTIONS: 
-        //      1. The late fee button isn't active unless the searched customer
-        //         has late fees on his/her account.
-        //      2. A customer has been searched for, but we still check for
-        //         validity, because users suck.
-        
-        // Fetch the customer details from the label and make sure they're
-        // still valid.
-        String customerIdValue = labelCheckOutID.getText();        
-        if(customerIdValue == null || customerIdValue.compareTo("[Search Required]") == 0)
-        {
-            errorBox("No valid customer is active in this search. Please enter a correct customer ID.", "Check Out Error");
-            return;
-        }
-        
-        // Pay the late fees for this customer.
-        // Assumption: The customer has paid via another system independent
-        // of this video rental management system!
-        DatabaseManager.DbResult result = m_databaseManager.payLateFees(Integer.parseInt(customerIdValue));
-        if(result != DatabaseManager.DbResult.DB_OK)
-        {
-            errorBox("There was an error trying to pay late fees for this customer.", "Check Out Error");
-            return;
-        }
-        
-        // Update the table based on the previous search data
-        updateCheckOutScreen();
-        
-        // Notify of success
-        infoBox("Late fees successfully paid for this customer's outstanding rentals.", "Check Out");
-    }//GEN-LAST:event_transactionsCheckOutLateFeeButtonActionPerformed
 
     private void queryMovieSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSearchButtonActionPerformed
         // TODO Errors on selected a empty row
@@ -1809,39 +1750,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         infoBox("Customer successfully located. Select an available video in the list and then press Check Out.", "Check Out");
     }//GEN-LAST:event_transactionsCheckOutSearchButtonActionPerformed
 
-    private void transactionsCheckInLateFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInLateFeeButtonActionPerformed
-        int selectedRowIndex = transactionsCheckInList.getSelectedRow();
-        if(selectedRowIndex < 0)
-        {
-            errorBox("No selection was made! Cannot pay late fees.", "Check In Error");
-            return;
-        }
-        
-        // Make sure we're trying to pay late fees on something that is 
-        // actually late
-        String selectedIsLate = (String) transactionsCheckInList.getModel().getValueAt(selectedRowIndex, 1);
-        if(selectedIsLate == null || selectedIsLate.compareTo("No") == 0)
-        {
-            errorBox("This rental is not late. You cannot pay late fees for it.", "Check In Error");
-            return;
-        }
-        
-        String selectedCustomerId = (String) transactionsCheckInList.getModel().getValueAt(selectedRowIndex, 2);
-        
-        DatabaseManager.DbResult result = m_databaseManager.payLateFees(Integer.parseInt(selectedCustomerId));
-        if(result != DatabaseManager.DbResult.DB_OK)
-        {
-            errorBox("There was an error trying to pay late fees for this customer.", "Check In Error");
-            return;
-        }
-        
-        // Notify of success
-        infoBox("Late fees successfully paid for this customer's outstanding rentals.", "Check In");
-        
-        // Update the table
-        updateRentalTransactionsTable();
-    }//GEN-LAST:event_transactionsCheckInLateFeeButtonActionPerformed
-
     private void transactionsCheckInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInButtonActionPerformed
         int selectedRowIndex = transactionsCheckInList.getSelectedRow();
         if(selectedRowIndex < 0)
@@ -1854,7 +1762,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         DatabaseManager.DbResult result = m_databaseManager.returnVideo(Integer.parseInt(selectedRentalId));
         if(result != DatabaseManager.DbResult.DB_OK)
         {
-            errorBox("Unable to return selected video. Make sure the customer doesn't have late fees!", "Check In Error");
+            errorBox("Unable to return selected video.", "Check In Error");
             return;
         }
         
@@ -1896,7 +1804,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     public void updateCheckOutScreen() {
         // Clear previous results and reset buttons
         clearCheckOutTable();
-        transactionsCheckOutLateFeeButton.setEnabled(false);
         transactionsCheckOutButton.setEnabled(false);
         
         // Get the ID for the search
@@ -1925,8 +1832,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         // querying by ID.
         for(Customer customer : queryTheCustomer)
         {
-            // Make sure this customer doesn't have maximum rentals allowed,
-            // or any late fees associated with them.
+            // Make sure this customer doesn't have maximum rentals allowed.
             ArrayList<Rental> customerRentals = m_databaseManager.getRentalTransactions(0, customer.m_id);
             if(customerRentals.size() >= MAX_ALLOWED_RENTALS)
             {
@@ -1935,22 +1841,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 labelCheckOutName.setText("[Search Required]");
                 labelCheckOutID.setText("[Search Required]");
                 return;
-            }
-            
-            Date currentDate = new Date();
-            for(Rental rental : customerRentals)
-            {
-                long difference = currentDate.getTime() - rental.m_dateOut.getTime();
-                long differenceInDays = TimeUnit.MILLISECONDS.toDays(difference);
-                
-                if(differenceInDays >= MAX_ALLOWED_CHECK_OUT_TIME && rental.m_lateFeesPaid != 0)
-                {
-                    errorBox("This customer has late fees and cannot rent until they are paid.", "Check Out Error");
-                    // Don't clear the results, because the user can then press the
-                    // Late Fees button to pay them directly from this screen.
-                    transactionsCheckOutLateFeeButton.setEnabled(true);
-                    return;
-                }
             }
             
             // Everything is good, so go ahead and update the screen with
@@ -1997,7 +1887,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     public void updateRentalTransactionsTable() {
         clearRentalTransactionsTable();    
         transactionsCheckInButton.setEnabled(false);
-        transactionsCheckInLateFeeButton.setEnabled(false);
         
         DefaultTableModel model = (DefaultTableModel) transactionsCheckInList.getModel();
         
@@ -2025,23 +1914,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 videoName = video.m_title;
             }
             
-            // See if this one is late.
-            String lateStatus = "No";
-            Date currentDate = new Date();
-            long difference = currentDate.getTime() - rental.m_dateOut.getTime();
-            long differenceInDays = TimeUnit.MILLISECONDS.toDays(difference);
-            if(differenceInDays >= MAX_ALLOWED_CHECK_OUT_TIME && rental.m_lateFeesPaid != 0)
-            {
-                lateStatus = "Yes";
-            }
-            
-            model.addRow(new Object[]{rentalId, lateStatus, String.valueOf(customerId), customerName, videoName, dateOut});
+            model.addRow(new Object[]{rentalId, String.valueOf(customerId), customerName, videoName, dateOut});
         }
         
         if(!rentals.isEmpty())
         {
             transactionsCheckInButton.setEnabled(true);
-            transactionsCheckInLateFeeButton.setEnabled(true);
         }
     }
    
@@ -2158,7 +2036,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         DatabaseManager.DbResult resultCustomerRemove = m_databaseManager.removeCustomer(customerID);
         if(resultCustomerRemove != DatabaseManager.DbResult.DB_OK)
         {
-            //System.out.println("    Customer Edit Error: This customer doesn't exist or has rentals out/latefees.");
+            //System.out.println("    Customer Edit Error: This customer doesn't exist or has rentals out.");
             errorBox("Look into VideoManagementSystem.removeCustomers()", "Some type of remove user failsauce");
         }
         else
@@ -2306,236 +2184,9 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     //
     ///////////////////////////////////////////////////////////////////
     
-    
-    ///////////////////////////////////////////////////////////////////
-    // Start Tests function built by Georgia
-    //
-    //
-    //
-    //
-    ///////////////////////////////////////////////////////////////////
-    public static void runTests()
-    {        
-        //----------------------------------------------------------------------
-        // TEST - VIDEO SEARCH
-        //----------------------------------------------------------------------
-        System.out.println("TEST 1: Video search");
-        ArrayList<Video> queryVideoTest = m_databaseManager.searchVideos(false, 0, "Sil", null, null, null, null, null);
-        
-        System.out.println("    VIDEO RESULTS:");
-        for(Video video : queryVideoTest)
-        {
-            System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
-        }
-        System.out.println("    END RESULTS");
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - CUSTOMER SEARCH
-        //----------------------------------------------------------------------
-        System.out.println("TEST 2: Customer search");
-        // This searches ALL customers
-        ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
-        
-        System.out.println("    CUSTOMER RESULTS:");
-        for(Customer customer : queryCustomerTest)
-        {
-            System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
-        }
-        System.out.println("    END RESULTS");
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - ADD VIDEO OF SAME TITLE/YEAR AS ANOTHER
-        //----------------------------------------------------------------------
-        System.out.println("TEST 3: Test if a video error is given when trying to add existing one");
-        DatabaseManager.DbResult resultVideoAddErr = m_databaseManager.addVideo("Argo", "", "", "", "2012", "", 10);
-        if(resultVideoAddErr == DatabaseManager.DbResult.DB_ERR_RECORD_EXISTS)
-        {
-            System.out.println("    Video Add Error: Already exists!");
-        }
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - ADD VIDEO WE KNOW DOESNT EXIST
-        //----------------------------------------------------------------------
-        System.out.println("TEST 4: Add a video correctly");
-        
-        // Cache this video, we'll need it in the edit test later
-        Video originalVideo = null;
-        
-        DatabaseManager.DbResult resultVideoAddOk = m_databaseManager.addVideo("Charlie and the Chocolate Factory", "", "", "", "2013", "", 5);
-        if(resultVideoAddOk != DatabaseManager.DbResult.DB_OK)
-        {
-            System.out.println("    Video Add Error: Video already exists.");
-            
-            // Get this video, store it as the original for now (we've likely run this
-            // hard-coded test already and don't want to purge the database to test
-            // the edits below)
-            ArrayList<Video> queryVideoAddFetch = m_databaseManager.searchVideos(true, 0, "Charlie and the Chocolate Factory", null, null, null, "2013", null);
-            for(Video video : queryVideoAddFetch)
-            {
-                originalVideo = new Video(video);
-                
-                System.out.println("        [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
-            }
-        }
-        else
-        {
-            System.out.println("    Video successfully added:");
-            
-            // Verify with a quick test (we don't need to do this in the final submission)
-            ArrayList<Video> queryVideoAddVerify = m_databaseManager.searchVideos(true, 0, "Charlie and the Chocolate Factory", null, null, null, "2013", null);
-            for(Video video : queryVideoAddVerify)
-            {
-                originalVideo = new Video(video);
-                
-                System.out.println("        [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
-            }
-        }
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - ADD CUSTOMER WE KNOW DOESNT EXIST
-        //----------------------------------------------------------------------
-        System.out.println("TEST 5: Add a customer correctly");
-        
-        // Cache this customer, we'll need it in the edit test later
-        Customer originalCustomer = null;
-        
-        DatabaseManager.DbResult resultCustomerAddOk = m_databaseManager.addCustomer("Georgia", "Nelson", "123 Lollipop Lane", "Magicland", "TX", "12345", "5123692345");
-        if(resultCustomerAddOk != DatabaseManager.DbResult.DB_OK)
-        {
-            System.out.println("    Customer Add Error: Generic error message. Something bad happened. Compare against error types and give a specific message.");
-            
-            ArrayList<Customer> queryCustomerSearch = m_databaseManager.searchCustomers(true, 0, "Georgia", "Nelson", "5123692345");
-            for(Customer customer : queryCustomerSearch)
-            {
-                originalCustomer = new Customer(customer);
-                System.out.println("        [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
-            }
-        }
-        else
-        {
-            System.out.println("    Customer successfully added:");
-            
-            // Verify with a quick test (we don't need to do this in the final submission)            
-            ArrayList<Customer> queryCustomerAddVerify = m_databaseManager.searchCustomers(true, 0, "Georgia", null, null);
-            for(Customer customer : queryCustomerAddVerify)
-            {
-                originalCustomer = new Customer(customer);
-                System.out.println("        [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
-            }
-        } 
-        System.out.println("");
-                
-        //----------------------------------------------------------------------
-        // TEST - ADD CUSTOMER WITH SAME NAME AND PHONE NUMBER
-        //----------------------------------------------------------------------
-        System.out.println("TEST 6: Test if a customer error is given when trying to add existing one");
-        DatabaseManager.DbResult resultCustomerAddErr = m_databaseManager.addCustomer("Georgia", "Nelson", "123 Lollipop Lane", "Magicland", "TX", "12345", "5123692345");
-        if(resultVideoAddErr == DatabaseManager.DbResult.DB_ERR_RECORD_EXISTS)
-        {
-            System.out.println("    Customer Add Error: Already exists!");
-        }
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - EDIT VIDEO
-        //----------------------------------------------------------------------
-        System.out.println("TEST 7: Edit Video");
-        originalVideo.m_title = "Chocolat";
-        
-        DatabaseManager.DbResult resultVideoEdit = m_databaseManager.updateVideo(originalVideo);
-        if(resultVideoEdit != DatabaseManager.DbResult.DB_OK)
-        {
-            System.out.println("    Video Edit Error: This video already exists! Change some of the data!");
-        }
-        else
-        {
-            System.out.println("    Video successfully updated:");
-            
-            // Verify with a quick test (we don't need to do this in the final submission)
-            ArrayList<Video> queryVideoEditVerify = m_databaseManager.searchVideos(true, 0, "Chocolat", null, null, null, null, null);
-            for(Video video : queryVideoEditVerify)
-            {
-                System.out.println("        [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
-            }
-        }
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - EDIT CUSTOMER
-        //----------------------------------------------------------------------
-        System.out.println("TEST 8: Edit Customer");
-        originalCustomer.m_lastName = "Divorced";
-        
-        DatabaseManager.DbResult resultCustomerEdit = m_databaseManager.updateCustomer(originalCustomer);
-        if(resultCustomerEdit != DatabaseManager.DbResult.DB_OK)
-        {
-            System.out.println("    Customer Edit Error: This customer already exists! Change some of the data!");
-        }
-        else
-        {
-            System.out.println("    Customer successfully updated:");
-            
-            // Verify with a quick test (we don't need to do this in the final submission)
-            ArrayList<Customer> queryCustomerEditVerify = m_databaseManager.searchCustomers(true, 0, "Georgia", "Divorced", null);
-            for(Customer customer : queryCustomerEditVerify)
-            {
-                System.out.println("        [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
-            }
-        }
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - DELETE VIDEO
-        //----------------------------------------------------------------------
-        System.out.println("TEST 9: Delete Video");
-        
-        DatabaseManager.DbResult resultVideoRemove = m_databaseManager.removeVideo(originalVideo.m_id);
-        if(resultVideoRemove != DatabaseManager.DbResult.DB_OK)
-        {
-            System.out.println("    Video Edit Error: This video doesn't exist or has rentals out.");
-        }
-        else
-        {
-            System.out.println("    Video successfully removed.");
-        }
-        System.out.println("");
-        
-        //----------------------------------------------------------------------
-        // TEST - DELETE CUSTOMER
-        //----------------------------------------------------------------------
-        System.out.println("TEST 10: Delete Customer");
-        
-        DatabaseManager.DbResult resultCustomerRemove = m_databaseManager.removeCustomer(originalCustomer.m_id);
-        if(resultCustomerRemove != DatabaseManager.DbResult.DB_OK)
-        {
-            System.out.println("    Customer Edit Error: This customer doesn't exist or has rentals out/latefees.");
-        }
-        else
-        {
-            System.out.println("    Customer successfully removed.");
-        }
-        System.out.println("");
-    }
-    
-     ///////////////////////////////////////////////////////////////////
-    // End Tests function built by Georgia
-    //
-    //
-    //
-    //
-    ///////////////////////////////////////////////////////////////////
-    
     // Private variable for maximum # of videos allowed out at any time by
     // a single customer
     private final int MAX_ALLOWED_RENTALS = 3;
-    
-    // Private variable for maximum # of days allowed to rent before late
-    // fees are applied
-    private final int MAX_ALLOWED_CHECK_OUT_TIME = 2;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addCustomerAddressLabel;
@@ -2636,14 +2287,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JButton removeMovieButton;
     private javax.swing.JComboBox removeMovieComboBox;
     private javax.swing.JButton transactionsCheckInButton;
-    private javax.swing.JButton transactionsCheckInLateFeeButton;
     private javax.swing.JTable transactionsCheckInList;
     private javax.swing.JPanel transactionsCheckInTab;
     private javax.swing.JButton transactionsCheckOutButton;
     private javax.swing.JLabel transactionsCheckOutCustomerIDLabel;
     private javax.swing.JTextField transactionsCheckOutCustomerIDText;
     private javax.swing.JTable transactionsCheckOutCustomerList;
-    private javax.swing.JButton transactionsCheckOutLateFeeButton;
     private javax.swing.JScrollBar transactionsCheckOutScrollBar;
     private javax.swing.JButton transactionsCheckOutSearchButton;
     private javax.swing.JPanel transactionsCheckOutTab;

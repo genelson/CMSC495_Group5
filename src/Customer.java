@@ -10,6 +10,7 @@ REVISION TABLE:
 DATE                NAME                    CHANGE DESCRIPTION
 --------------------------------------------------------------------------------
 2/16/15             Georgia Nelson          File created.
+2/24/15             Georgia Nelson          Removing late fees references.
 */
 
 public class Customer 
@@ -27,7 +28,8 @@ public class Customer
     public String m_phoneNumber;
     public boolean m_holdOnAccount;
     
-    // List of rental transactions on this customer's account
+    // List of rental transactions on this customer's account    
+    //TODO Sprint 2 functionality (gnelson)
     //TODO ArrayList<Rental> m_rentals = new ArrayList();
     
     //--------------------------------------------------------------------------
