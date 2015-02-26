@@ -972,6 +972,12 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="queryMovieTitleText">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Enter Movie Title/Select From List"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="queryMovieTitleTextMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="queryMovieGenreLabel">
                       <Properties>

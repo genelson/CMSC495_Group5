@@ -5,6 +5,12 @@ REVISION TABLE:
 DATE                NAME                    CHANGE DESCRIPTION
 --------------------------------------------------------------------------------
 2/16/15             Larry Barker            File created.
+2/17/15             Larry Barker            GUI Created
+2/18/15             Larry Barker            Added User Add/Remove
+2/19/15             Larry Barker            Added Inventory Add/Remove
+2/21/15             Larry Barker            Added Customer Search function
+2/22/15             Larry Barker            Added Video Search function
+2/25/15             Larry Barker            Improving Customer Search
 2/23/15             Georgia Nelson          Adding initial support for check out
 2/24/15             Georgia Nelson          Removing late fees references
 */
@@ -788,6 +794,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         queryMovieTitleLabel.setText("Title");
 
+        queryMovieTitleText.setText("Enter Movie Title/Select From List");
+        queryMovieTitleText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                queryMovieTitleTextMouseClicked(evt);
+            }
+        });
+
         queryMovieGenreLabel.setText("Genre");
 
         queryMovieRatingLabel.setText("Rating");
@@ -1413,7 +1426,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
         //System.out.println(selectedString);
         ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(selectedString), null, null, null);
-        
+        queryCustomerTableList.getSelectionModel().clearSelection();
         for(Customer customer : queryTheCustomer)
         {
             queryCustomerZipText.setText(customer.m_zipCode);
@@ -1551,6 +1564,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                     Year);
             
             //Should be good yes? Rebuild the Lists!! Clean the shiz!!!
+            queryMovieTableList.getSelectionModel().clearSelection();
             queryMovieDirectorText.setText("");
             queryMovieLengthText.setText("");
             queryMovieRatingText.setText("");
@@ -1610,30 +1624,70 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         int selectedRowIndex = queryMovieTableList.getSelectedRow();
         if(selectedRowIndex < 0)
         {
-            errorBox("No selection was made! Cannot edit.", "Video Search Error");
-            return;
-        }
-        //int selectedColumnIndex = queryMovieTableList.getSelectedColumn();
-        
-        String selectedString = (String) queryMovieTableList.getModel().getValueAt(selectedRowIndex,0);
-        //System.out.println(selectedString);
-        ArrayList<Video> queryTheVideo = m_databaseManager.searchVideos(true, Integer.parseInt(selectedString), null, null, null, null, null, null);
-        
-        for(Video video : queryTheVideo)
-        {
-            //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
-            queryMovieDirectorText.setText(video.m_director);
-            queryMovieLengthText.setText(video.m_length);
-            queryMovieRatingText.setText(video.m_rating);
-            queryMovieTitleText.setText(video.m_title);
-            queryMovieYearText.setText(video.m_year);
-            queryMovieIDText.setText(String.valueOf(video.m_totalNumberOfMovies));
-            queryMovieGenreText.setText(video.m_type);
-            queryMovieNumberText.setText(String.valueOf(video.m_id));
+
+            int TitleN = queryMovieTitleText.getText().length();
+            String Title = queryMovieTitleText.getText();
+            String testText = "Enter Movie Title/Select From List";
+
+            if ( TitleN > 0 && ! queryMovieTitleText.getText().contains(testText)) {
+                //setMovieQuery(Title);
+                
+                int lastRow = queryMovieTableList.convertRowIndexToView(queryMovieTableList.getRowCount() -1);
+                
+                for (int i=0; i <= lastRow; i++){
+                    
+                    String theValue = (String)queryMovieTableList.getModel().getValueAt(i, 1);
+                    //System.out.println(theValue);
+                    if ( theValue.toLowerCase().contains(Title.toLowerCase())){
+                        //System.out.println(theValue);
+                        //queryMovieTableList.setRowSelectionInterval(i, i);
+                        setMovieQuery(0, theValue);
+                        queryMovieTableList.clearSelection();
+                        return;
+                        
+                    }
+                    else {
+                        //infoBox("No matches, please try again","Video Search Information");
+                        queryMovieTableList.clearSelection();
+                        //return;
+                    }
+                }
+            }
             
+            else {
+                errorBox("No selection was made! Cannot edit. Please selecte from the list"
+                        + " or type in a title and search again", "Video Search Error");
+            }
+
+        }
+        
+        else {
+            String selectedString = (String) queryMovieTableList.getModel().getValueAt(selectedRowIndex,0);
+            setMovieQuery(Integer.parseInt(selectedString), null);
+            queryMovieTableList.clearSelection();
+            
+         
         }
     }//GEN-LAST:event_queryMovieSearchButtonActionPerformed
 
+    public void setMovieQuery(int ID, String title)
+    {
+       
+        ArrayList<Video> queryTheVideo = m_databaseManager.searchVideos(true, ID , title, null, null, null, null, null);
+        for(Video video : queryTheVideo)
+            {
+                //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
+                queryMovieDirectorText.setText(video.m_director);
+                queryMovieLengthText.setText(video.m_length);
+                queryMovieRatingText.setText(video.m_rating);
+                queryMovieTitleText.setText(video.m_title);
+                queryMovieYearText.setText(video.m_year);
+                queryMovieIDText.setText(String.valueOf(video.m_totalNumberOfMovies));
+                queryMovieGenreText.setText(video.m_type);
+                queryMovieNumberText.setText(String.valueOf(video.m_id));
+            
+            }
+    }
     private void removeMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieButtonActionPerformed
         // TODO More logic yo:
         String selectedItem = (String)removeMovieComboBox.getSelectedItem();
@@ -1769,6 +1823,15 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         // Notify of success
         infoBox("Successful return of the video has been completed.", "Check In");
     }//GEN-LAST:event_transactionsCheckInButtonActionPerformed
+
+    private void queryMovieTitleTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryMovieTitleTextMouseClicked
+        // TODO 
+        String testText = "Enter Movie Title/Select From List";
+        if ( queryMovieTitleText.getText().contains(testText)){
+            queryMovieTitleText.setText("");
+        }
+        
+    }//GEN-LAST:event_queryMovieTitleTextMouseClicked
     
     public void updateDropDowns() {
         removeCustomerDropDownList.removeAllItems();
