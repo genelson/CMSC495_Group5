@@ -1798,10 +1798,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void transactionsCheckOutSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutSearchButtonActionPerformed
        
         // Update the available rentals list
-        updateCheckOutScreen();
+        boolean results = updateCheckOutScreen();
             
         // Notify search and populate success
-        infoBox("Customer successfully located. Select an available video in the list and then press Check Out.", "Check Out");
+        if(results)
+        {
+            infoBox("Customer successfully located. Select an available video in the list and then press Check Out.", "Check Out");
+        }
     }//GEN-LAST:event_transactionsCheckOutSearchButtonActionPerformed
 
     private void transactionsCheckInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckInButtonActionPerformed
@@ -1864,7 +1867,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         } 
     }    
     
-    public void updateCheckOutScreen() {
+    public boolean updateCheckOutScreen() {
         // Clear previous results and reset buttons
         clearCheckOutTable();
         transactionsCheckOutButton.setEnabled(false);
@@ -1876,7 +1879,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             errorBox("No suitable ID was provided for this customer. Please try again.", "Check Out Error");
             labelCheckOutName.setText("[Search Required]");
             labelCheckOutID.setText("[Search Required]");
-            return;
+            return false;
         }
         
         // Perform the query
@@ -1888,7 +1891,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             transactionsCheckOutCustomerIDText.setText("");
             labelCheckOutName.setText("[Search Required]");
             labelCheckOutID.setText("[Search Required]");
-            return;
+            return false;
         }
         
         // It is a fair assumption that only 1 will be returned since we're 
@@ -1903,7 +1906,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 transactionsCheckOutCustomerIDText.setText("");
                 labelCheckOutName.setText("[Search Required]");
                 labelCheckOutID.setText("[Search Required]");
-                return;
+                return false;
             }
             
             // Everything is good, so go ahead and update the screen with
@@ -1924,7 +1927,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         if(availableVideos.isEmpty())
         {
             errorBox("No videos are available to rent at this time.", "Check Out Error");
-            return;
+            return false;
         }
         
         // Populate the list with the results
@@ -1945,6 +1948,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 model.addRow(new Object[]{videoId, videoTitle});
             }
         }
+        
+        return true;
     }
     
     public void updateRentalTransactionsTable() {
