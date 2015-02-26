@@ -1608,19 +1608,32 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         DatabaseManager.DbResult result = m_databaseManager.rentVideo(Integer.parseInt(selectedVideoId), Integer.parseInt(customerIdValue));
         if(result != DatabaseManager.DbResult.DB_OK)
         {
-            errorBox("There was an error trying to check out the video to this customer.", "Check Out Error");
+            if(result == DatabaseManager.DbResult.DB_ERR_ALREADY_RENTED)
+            {
+                errorBox("This customer already has this video checked out.", "Check Out Error");
+            }
+            else if(result == DatabaseManager.DbResult.DB_ERR_AT_RENTAL_LIMIT)
+            {
+                errorBox("This customer has too many videos checked out. One must be returned before another may be rented.", "Check Out Error");
+            }
+            else
+            {
+                errorBox("There was an error trying to check out the video to this customer.", "Check Out Error");
+            }
+            
             return;
         }
         
-        // Update the table based on the previous search data
-        updateCheckOutScreen();
+        // Update the transaction tables based on the previous search data
+        updateCheckOutScreen(true);
+        updateRentalTransactionsTable();
         
         // Notify of success
-        infoBox("The video was successfully rented!", "Check Out");
+        infoBox("The video was successfully rented to " + labelCheckOutName.getText() + "!", "Check Out");
     }//GEN-LAST:event_transactionsCheckOutButtonActionPerformed
 
     private void queryMovieSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSearchButtonActionPerformed
-        // TODO Errors on selected a empty row
+        
         int selectedRowIndex = queryMovieTableList.getSelectedRow();
         if(selectedRowIndex < 0)
         {
@@ -1798,7 +1811,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void transactionsCheckOutSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutSearchButtonActionPerformed
        
         // Update the available rentals list
-        boolean results = updateCheckOutScreen();
+        boolean results = updateCheckOutScreen(true);
             
         // Notify search and populate success
         if(results)
@@ -1822,6 +1835,10 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             errorBox("Unable to return selected video.", "Check In Error");
             return;
         }
+        
+        // Update the table
+        updateRentalTransactionsTable();
+        updateCheckOutScreen(false);
         
         // Notify of success
         infoBox("Successful return of the video has been completed.", "Check In");
@@ -1865,29 +1882,48 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) queryMovieTableList.getModel();
             model.addRow(new Object[]{videoId, videoTitle});
         } 
-    }    
+    } 
     
-    public boolean updateCheckOutScreen() {
+    public boolean isCustomerCheckOutIDValid() {
+        String customerIDText = transactionsCheckOutCustomerIDText.getText();
+        if(customerIDText == null || customerIDText.length() < 1 || customerIDText.compareTo("0") == 0)
+        {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean updateCheckOutScreen(boolean warnOnId) {
         // Clear previous results and reset buttons
         clearCheckOutTable();
         transactionsCheckOutButton.setEnabled(false);
         
         // Get the ID for the search
-        String customerIDText = transactionsCheckOutCustomerIDText.getText();
-        if(customerIDText == null || customerIDText.length() < 1 || customerIDText.compareTo("0") == 0)
+        if(!isCustomerCheckOutIDValid())
         {
-            errorBox("No suitable ID was provided for this customer. Please try again.", "Check Out Error");
+            if(warnOnId)
+            {
+                errorBox("No suitable ID was provided for this customer. Please try again.", "Check Out Error");
+            }
+            
             labelCheckOutName.setText("[Search Required]");
             labelCheckOutID.setText("[Search Required]");
             return false;
         }
         
         // Perform the query
-        ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(customerIDText), null, null, null);
+        ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, 
+                Integer.parseInt(transactionsCheckOutCustomerIDText.getText()), 
+                null, null, null);
         
         if(queryTheCustomer.size() == 0)
         {
-            errorBox("No customers were found with that ID. Please try again.", "Check Out Error");
+            if(warnOnId)
+            {
+                errorBox("No customers were found with that ID. Please try again.", "Check Out Error");
+            }
+            
             transactionsCheckOutCustomerIDText.setText("");
             labelCheckOutName.setText("[Search Required]");
             labelCheckOutID.setText("[Search Required]");
@@ -1897,18 +1933,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         // It is a fair assumption that only 1 will be returned since we're 
         // querying by ID.
         for(Customer customer : queryTheCustomer)
-        {
-            // Make sure this customer doesn't have maximum rentals allowed.
-            ArrayList<Rental> customerRentals = m_databaseManager.getRentalTransactions(0, customer.m_id);
-            if(customerRentals.size() >= MAX_ALLOWED_RENTALS)
-            {
-                errorBox("This customer already has 3 or more rentals checked out at this time and cannot rent any more.", "Check Out Error");
-                transactionsCheckOutCustomerIDText.setText("");
-                labelCheckOutName.setText("[Search Required]");
-                labelCheckOutID.setText("[Search Required]");
-                return false;
-            }
-            
+        {            
             // Everything is good, so go ahead and update the screen with
             // this customer's name and populate the list with available 
             // inventory.
@@ -1925,8 +1950,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         
         // Make sure we have videos to rent
         if(availableVideos.isEmpty())
-        {
-            errorBox("No videos are available to rent at this time.", "Check Out Error");
+        {            
+            if(warnOnId)
+            {
+                errorBox("No videos are available to rent at this time.", "Check Out Error");
+            }
+            
             return false;
         }
         
@@ -1947,6 +1976,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) transactionsCheckOutCustomerList.getModel();
                 model.addRow(new Object[]{videoId, videoTitle});
             }
+        }
+        
+        if(!warnOnId)
+        {
+            return false;
         }
         
         return true;
@@ -2251,10 +2285,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     //
     //
     ///////////////////////////////////////////////////////////////////
-    
-    // Private variable for maximum # of videos allowed out at any time by
-    // a single customer
-    private final int MAX_ALLOWED_RENTALS = 3;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addCustomerAddressLabel;

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,6 +42,10 @@ public class DatabaseManager
     private String m_databasePassword;
     private String m_databaseName;
     private int m_port;
+    
+    // Public variable for maximum # of videos allowed out at any time by
+    // a single customer
+    public final int MAX_ALLOWED_RENTALS = 3;
     
     //--------------------------------------------------------------------------
     // Inner Enumeration of possible database results referenced by the GUI
@@ -614,7 +619,7 @@ public class DatabaseManager
             conn = DriverManager.getConnection(m_address, m_user, m_databasePassword);
             
             // Write the string and prepare the statement for querying
-            String queryString = "UPDATE movie SET title=?, type=?, rating=?, length=?, year_released=?, director=? WHERE movie_id=?";
+            String queryString = "UPDATE movie SET title=?, type=?, rating=?, length=?, year_released=?, director=?, total_number_of_movies=? WHERE movie_id=?";
             
             // Create the prepared statement and plug in the data from
             // the method parameters
@@ -625,7 +630,8 @@ public class DatabaseManager
             query.setString(4, video.m_length);
             query.setString(5, video.m_year);
             query.setString(6, video.m_director);
-            query.setInt(7, video.m_id);
+            query.setInt(7, video.m_totalNumberOfMovies);
+            query.setInt(8, video.m_id);
             
             // Execute the query
             query.executeUpdate();
@@ -916,11 +922,10 @@ public class DatabaseManager
     // transactions. Both IDs may be passed in as 0 if you want to retrieve
     // all transactions. You may also provide one ID over another.
     //--------------------------------------------------------------------------
- public ArrayList<Rental> getRentalTransaction(int videoId, int customerId)
-
+    public ArrayList<Rental> getRentalTransactions(int videoId, int customerId)
     {
         // Create our list of returned objects
-        ArrayList<Rental> rental = new ArrayList();
+        ArrayList<Rental> rentals = new ArrayList();
         
         // Create database objects to manage connectivity and querying
         Connection conn = null;
@@ -934,15 +939,7 @@ public class DatabaseManager
             
             // Write the string and prepare the statement for querying
             String queryString = "SELECT * FROM rental WHERE ";
-            if(videoid != 0)
-            {
-                queryString += "video_id = ? ";
-            }
-            else
-            {
-                queryString += "video_id >= ? ";
-            }
-            if(cust_id != 0)
+            if(customerId != 0)
             {
                 queryString += "cust_id = ? ";
             }
@@ -951,29 +948,34 @@ public class DatabaseManager
                 queryString += "cust_id >= ? ";
             }
             
-                queryString += "ORDER BY last_name ASC";
+            if(videoId != 0)
+            {
+                queryString += "AND movie_id = ? ";                
             }
+            else
+            {
+                queryString += "AND movie_id >= ? ";
+            }
+            
+            queryString += "ORDER BY date_out ASC";
             
             // Create the prepared statement and plug in the data from
             // the method parameters
             query = conn.prepareStatement(queryString);
-            query.setInt(1, videoid);
+            query.setInt(1, customerId);
+            query.setInt(2, videoId);
             
             // Execute the query and iterate the results
             results = query.executeQuery();            
             while(results.next())
-            {
-                              
+            {                
                 // Create a new object from the result and add it to the list
-                Rental rental = new Rental(results.getInt("cust_id"),
-                    results.getString("rental_id"),
-                    results.getString("cust_id"),
-                    results.getString("date_out"),
-                    results.getString("movie_id"),
-                    results.getString("late_fees_paid")
-                        ;
+                Rental rental = new Rental(results.getInt("rental_id"),
+                        results.getInt("cust_id"),
+                        results.getInt("movie_id"),
+                        results.getDate(3));
                 
-                rental.add(rental);
+                rentals.add(rental);
             }
         } 
         catch(SQLException ex) 
@@ -1001,12 +1003,19 @@ public class DatabaseManager
                 // Log any errors
                 Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);                
             }
-        }
+        }        
         
-        // Return results in the appropriate system format
-        return rental;
+        //TODO - Sprint 2 Functionality (gnelson)
+        // 1. Build a search very similar to the Customer and Video searches.
+        // 2. If video ID is 0, leave it out as a search param.
+        // 3. If Customer ID is 0, leave it out as a search param.
+        // 4. If both are 0, just do a very simple SELECT * FROM statement.
+        // 5. Iterate the query results and create new Rental objects for each
+        // 6. Add them to the list
+        // 7. Return the list
+        
+        return rentals;
     }
-    
         
     //--------------------------------------------------------------------------
     // Rent a Video to a Customer
@@ -1019,6 +1028,24 @@ public class DatabaseManager
         if(videoId < 1 || customerId < 1)
         {
             return DbResult.DB_ERR_BAD_INPUT;
+        }
+        
+        // Pull this customer's transactions and make sure the customer
+        // doesn't have more than the allowed rentals out and isn't already
+        // renting this video.
+        ArrayList<Rental> currentRentals = getRentalTransactions(0, customerId);
+        
+        if(currentRentals.size() >= MAX_ALLOWED_RENTALS)
+        {
+            return DbResult.DB_ERR_AT_RENTAL_LIMIT;
+        }
+        
+        for(Rental rental : currentRentals)
+        {
+            if(rental.m_movieId == videoId)
+            {
+                return DbResult.DB_ERR_ALREADY_RENTED;
+            }
         }
                 
         // Create database objects to manage connectivity and querying
@@ -1088,8 +1115,57 @@ public class DatabaseManager
         {
             return DbResult.DB_ERR_BAD_INPUT;
         }
+                
+        // Create database objects to manage connectivity and querying
+        Connection conn = null;
+        PreparedStatement query = null;
         
-        //TODO - Sprint 2 Functionality (gnelson)
+        try
+        {
+            // Open the database connection
+            conn = DriverManager.getConnection(m_address, m_user, m_databasePassword);
+            
+            // Write the string and prepare the statement for querying
+            String queryString = "DELETE FROM rental WHERE rental_id = ?";
+            
+            // Create the prepared statement and plug in the data from
+            // the method parameters
+            query = conn.prepareStatement(queryString);
+            query.setInt(1, rentalId);
+            
+            // Execute the query
+            query.executeUpdate();
+        } 
+        catch(SQLException ex) 
+        {
+            // Log any errors
+            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
+            return DbResult.DB_ERR_QUERY;
+        }
+        finally
+        {
+            try
+            {
+                // Close out the query and the connection to the database
+                if(query != null)
+                {
+                    query.close();
+                }
+                
+                if(conn != null)
+                {
+                    conn.close();
+                }
+            }
+            catch(SQLException ex)
+            {
+                // Log any errors
+                Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex); 
+                return DbResult.DB_ERR_QUERY;               
+            }
+        }
+        
+        // Return results in the appropriate system format
         return DbResult.DB_OK;
     }
 }
