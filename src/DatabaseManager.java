@@ -596,9 +596,12 @@ public class DatabaseManager
         // within the same year, thus making multiple entries of the same
         // inventory item.
         ArrayList<Video> duplicateCheck = searchVideos(true, 0, video.m_title, null, null, null, video.m_year, null);
-        if(duplicateCheck.size() > 0)
+        for(Video videoDupe : duplicateCheck)
         {
-            return DbResult.DB_ERR_RECORD_EXISTS;
+            if(videoDupe.m_id != video.m_id)
+            {
+                return DbResult.DB_ERR_RECORD_EXISTS;
+            }
         }
         
         // Create database objects to manage connectivity and querying
@@ -685,9 +688,12 @@ public class DatabaseManager
         // within the same year, thus making multiple entries of the same
         // inventory item.
         ArrayList<Customer> duplicateCheck = searchCustomers(true, 0, customer.m_firstName, customer.m_lastName, customer.m_phoneNumber);
-        if(duplicateCheck.size() > 0)
+        for(Customer dupeCustomer : duplicateCheck)
         {
-            return DbResult.DB_ERR_RECORD_EXISTS;
+            if(dupeCustomer.m_id != customer.m_id)
+            {
+                return DbResult.DB_ERR_RECORD_EXISTS;
+            }
         }
         
         // Create database objects to manage connectivity and querying
