@@ -9,7 +9,7 @@ DATE                NAME                    CHANGE DESCRIPTION
 2/18/15             Larry Barker            Added User Add/Remove
 2/19/15             Larry Barker            Added Inventory Add/Remove
 2/21/15             Larry Barker            Added Customer Search function
-2/22/15             Larry Barker            Added Video Search function
+2/22/15             Larry Barker            Added Video Search by Title function
 2/25/15             Larry Barker            Improving Customer Search
 2/23/15             Georgia Nelson          Adding initial support for check out
 2/24/15             Georgia Nelson          Removing late fees references
