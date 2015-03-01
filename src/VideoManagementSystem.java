@@ -1416,6 +1416,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryCustomerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerSearchButtonActionPerformed
         // TODO Errors on selected a empty row
         int selectedRowIndex = queryCustomerTableList.getSelectedRow();
+        System.out.println(selectedRowIndex);
         if(selectedRowIndex < 0)
         {
             String firstname = queryCustomerFirstNameText.getText();
@@ -1447,6 +1448,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             //selectedRowIndex = queryCustomerTableList.getSelectedRow();
             String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
             //setCustomerQuery(Integer.parseInt(selectedString),"","","");
+            System.out.println(selectedString);
+            System.out.println(selectedRowIndex);
             ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(selectedString), null, null, null);
 			queryCustomerTableList.getSelectionModel().clearSelection();
 			for(Customer customer : queryTheCustomer)
