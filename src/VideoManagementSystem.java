@@ -1425,10 +1425,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             int lastnameN = lastname.length();
             int phoneN = phone.length();
             
-            if ( firstnameN > 0 && lastnameN > 0 && phoneN > 0) {
-                setCustomerQuery(0,firstname, lastname, phone);
-            }
-            else if (firstnameN > 0 && lastnameN > 0 && phoneN <= 0) {
+            if ( firstnameN > 0 && lastnameN > 0 ) {
                 setCustomerQuery(0,firstname, lastname, "");
             }
             else if ( firstnameN > 0 && lastnameN <= 0){
