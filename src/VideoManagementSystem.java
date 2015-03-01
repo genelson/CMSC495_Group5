@@ -1418,27 +1418,38 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         int selectedRowIndex = queryCustomerTableList.getSelectedRow();
         if(selectedRowIndex < 0)
         {
-            errorBox("No selection was made! Cannot edit.", "Video Search Error");
-            return;
+            String firstname = queryCustomerFirstNameText.getText();
+            String lastname = queryCustomerLastNameText.getText();
+            String phone = queryCustomerPhoneNumberText.getText();
+            int firstnameN = firstname.length();
+            int lastnameN = lastname.length();
+            int phoneN = phone.length();
+            
+            if ( firstnameN > 0 && lastnameN > 0 && phoneN > 0) {
+                setCustomerQuery(0,firstname, lastname, phone);
+            }
+            else if (firstnameN > 0 && lastnameN > 0 && phoneN <= 0) {
+                setCustomerQuery(0,firstname, lastname, "");
+            }
+            else if ( firstnameN > 0 && lastnameN <= 0){
+                infoBox("Please enter in last name as well", "Query Customer Information");
+            }
+            else if ( firstnameN <= 0 && lastnameN > 0){
+                infoBox("Please enter in first name as well", "Query Customer Information");
+            }
+            else if ( phoneN > 0){
+                setCustomerQuery(0,"", "", phone);
+            }
+            
+            //errorBox("No selection was made! Cannot edit.", "Video Search Error");
+            //return;
         }
         //int selectedColumnIndex = queryMovieTableList.getSelectedColumn();
-        
-        String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
-        //System.out.println(selectedString);
-        ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(selectedString), null, null, null);
-        queryCustomerTableList.getSelectionModel().clearSelection();
-        for(Customer customer : queryTheCustomer)
-        {
-            queryCustomerZipText.setText(customer.m_zipCode);
-            queryCustomerStateText.setText(customer.m_state);
-            queryCustomerCityText.setText(customer.m_city);
-            queryCustomerStreetAddressText.setText(customer.m_streetAddress);
-            queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
-            queryCustomerFirstNameText.setText(customer.m_firstName);
-            queryCustomerLastNameText.setText(customer.m_lastName);
-            queryCustomerIDText.setText(String.valueOf(customer.m_id));
-            
+        else {
+            String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
+            setCustomerQuery(Integer.parseInt(selectedString),"","","");
         }
+        
         
     }//GEN-LAST:event_queryCustomerSearchButtonActionPerformed
 
@@ -2278,6 +2289,32 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
     }
     
+    public void setCustomerQuery(int ID, String First, String Last, String Number) {
+        if (First.equals("")){
+            First=null;
+        }
+        else if (Last.equals("")){
+            Last=null;
+        }
+        else if (Number.equals("")){
+            Number=null;
+        }
+        
+	ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, ID, First, Last, Number);
+	queryCustomerTableList.getSelectionModel().clearSelection();
+	for(Customer customer : queryTheCustomer)
+	{
+            queryCustomerZipText.setText(customer.m_zipCode);
+            queryCustomerStateText.setText(customer.m_state);
+            queryCustomerCityText.setText(customer.m_city);
+            queryCustomerStreetAddressText.setText(customer.m_streetAddress);
+            queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
+            queryCustomerFirstNameText.setText(customer.m_firstName);
+            queryCustomerLastNameText.setText(customer.m_lastName);
+            queryCustomerIDText.setText(String.valueOf(customer.m_id));
+            
+        }
+    }    
     ///////////////////////////////////////////////////////////////////
     // END GUI FUNCTIONS
     //
