@@ -1435,6 +1435,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 infoBox("Please enter in first name as well", "Query Customer Information");
             }
             else if ( phoneN > 0){
+                System.out.println("We are in the right area....");
                 setCustomerQuery(0,"", "", phone);
             }
             
