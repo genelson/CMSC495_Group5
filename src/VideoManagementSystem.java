@@ -1444,8 +1444,23 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
         //int selectedColumnIndex = queryMovieTableList.getSelectedColumn();
         else {
+            //selectedRowIndex = queryCustomerTableList.getSelectedRow();
             String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
-            setCustomerQuery(Integer.parseInt(selectedString),"","","");
+            //setCustomerQuery(Integer.parseInt(selectedString),"","","");
+            ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(selectedString), null, null, null);
+			queryCustomerTableList.getSelectionModel().clearSelection();
+			for(Customer customer : queryTheCustomer)
+			{
+				queryCustomerZipText.setText(customer.m_zipCode);
+				queryCustomerStateText.setText(customer.m_state);
+				queryCustomerCityText.setText(customer.m_city);
+				queryCustomerStreetAddressText.setText(customer.m_streetAddress);
+				queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
+				queryCustomerFirstNameText.setText(customer.m_firstName);
+				queryCustomerLastNameText.setText(customer.m_lastName);
+				queryCustomerIDText.setText(String.valueOf(customer.m_id));
+            
+			}
         }
         
         
@@ -2288,13 +2303,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }
     
     public void setCustomerQuery(int ID, String First, String Last, String Number) {
-        if (First.equals("")){
+        if (First.length() == 0){
             First=null;
         }
-        else if (Last.equals("")){
+        else if (Last.length() == 0){
             Last=null;
         }
-        else if (Number.equals("")){
+        else if (Number.length() == 0){
             Number=null;
         }
         
