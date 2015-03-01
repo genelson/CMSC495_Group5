@@ -11,6 +11,8 @@ DATE                NAME                    CHANGE DESCRIPTION
 2/21/15             Larry Barker            Added Customer Search function
 2/22/15             Larry Barker            Added Video Search by Title function
 2/25/15             Larry Barker            Improving Customer Search
+2/28/15             Larry Barker            Completed Improved Customer Search
+2/28/15             Larry Barker            Added error checking for no search match for customer/video search
 2/23/15             Georgia Nelson          Adding initial support for check out
 2/24/15             Georgia Nelson          Removing late fees references
 */
