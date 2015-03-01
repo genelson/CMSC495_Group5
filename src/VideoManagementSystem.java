@@ -114,6 +114,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         queryCustomerZipText = new javax.swing.JTextField();
         queryCustomerIDLabel = new javax.swing.JLabel();
         queryCustomerIDText = new javax.swing.JTextField();
+        queryCustomerClearButton = new javax.swing.JButton();
         mainInventoryTab = new javax.swing.JPanel();
         inventorySubTabs = new javax.swing.JTabbedPane();
         movieAdd = new javax.swing.JPanel();
@@ -156,6 +157,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         queryMovieTableList = new javax.swing.JTable();
         queryMovieNumberText = new javax.swing.JTextField();
         queryMovieNumber = new javax.swing.JLabel();
+        queryMovieClearButton = new javax.swing.JButton();
         mainTransactionsTab = new javax.swing.JPanel();
         transactionsSubTab = new javax.swing.JTabbedPane();
         transactionsCheckOutTab = new javax.swing.JPanel();
@@ -355,10 +357,23 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         customerSubTabs.addTab("Remove Customer", customerDelete);
 
+        queryCustomerLastNameText.setText("Last Name OR");
+        queryCustomerLastNameText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                queryCustomerLastNameTextMouseClicked(evt);
+            }
+        });
+
         queryCustomerFirstNameLabel.setText("First");
 
         queryCustomerLastNameLabel.setText("Last");
 
+        queryCustomerFirstNameText.setText("First Name And");
+        queryCustomerFirstNameText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                queryCustomerFirstNameTextMouseClicked(evt);
+            }
+        });
         queryCustomerFirstNameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 queryCustomerFirstNameTextActionPerformed(evt);
@@ -372,7 +387,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
         });
 
+        queryCustomerPhoneNumberText.setText("Phone Number");
         queryCustomerPhoneNumberText.setToolTipText("1-222-222-2222");
+        queryCustomerPhoneNumberText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                queryCustomerPhoneNumberTextMouseClicked(evt);
+            }
+        });
 
         queryCustomerEditButton.setText("Save Changes");
         queryCustomerEditButton.addActionListener(new java.awt.event.ActionListener() {
@@ -517,6 +538,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         queryCustomerStreetLabel.setText("Street");
 
+        queryCustomerStreetAddressText.setText("OR Select From List");
+        queryCustomerStreetAddressText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                queryCustomerStreetAddressTextMouseClicked(evt);
+            }
+        });
         queryCustomerStreetAddressText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 queryCustomerStreetAddressTextActionPerformed(evt);
@@ -538,6 +565,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         queryCustomerIDLabel.setText("ID");
 
         queryCustomerIDText.setEditable(false);
+
+        queryCustomerClearButton.setText("Clear");
+        queryCustomerClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queryCustomerClearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout customerQueryLayout = new javax.swing.GroupLayout(customerQuery);
         customerQuery.setLayout(customerQueryLayout);
@@ -572,7 +606,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(customerQueryLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(queryCustomerClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryCustomerEditButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryCustomerSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -601,7 +636,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(queryCustomerEditButton)
-                            .addComponent(queryCustomerSearchButton)))
+                            .addComponent(queryCustomerSearchButton)
+                            .addComponent(queryCustomerClearButton)))
                     .addGroup(customerQueryLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -623,7 +659,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                             .addComponent(queryCustomerZipText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(queryCustomerPhoneLabel)
                             .addComponent(queryCustomerPhoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(customerQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(queryCustomerIDLabel)
                             .addComponent(queryCustomerIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -969,6 +1005,13 @@ public class VideoManagementSystem extends javax.swing.JFrame {
 
         queryMovieNumber.setText("ID");
 
+        queryMovieClearButton.setText("Clear");
+        queryMovieClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queryMovieClearButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout movieQueryLayout = new javax.swing.GroupLayout(movieQuery);
         movieQuery.setLayout(movieQueryLayout);
         movieQueryLayout.setHorizontalGroup(
@@ -996,9 +1039,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                                 .addComponent(queryMovieDirectorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieDirectorText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 36, Short.MAX_VALUE))
+                                .addGap(0, 14, Short.MAX_VALUE))
                             .addGroup(movieQueryLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(queryMovieClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieSaveChangesButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(queryMovieSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1053,7 +1098,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(queryMovieSearchButton)
-                            .addComponent(queryMovieSaveChangesButton)))
+                            .addComponent(queryMovieSaveChangesButton)
+                            .addComponent(queryMovieClearButton)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, movieQueryLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(movieQueryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1416,7 +1462,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryCustomerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerSearchButtonActionPerformed
         // TODO Errors on selected a empty row
         int selectedRowIndex = queryCustomerTableList.getSelectedRow();
-        System.out.println(selectedRowIndex);
+        //System.out.println(selectedRowIndex);
         if(selectedRowIndex < 0)
         {
             String firstname = queryCustomerFirstNameText.getText();
@@ -1425,8 +1471,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             int firstnameN = firstname.length();
             int lastnameN = lastname.length();
             int phoneN = phone.length();
-            
-            if ( firstnameN > 0 && lastnameN > 0 ) {
+            if (queryCustomerFirstNameText.getText().contains("First Name And")
+                    || queryCustomerLastNameText.getText().contains("Last Name OR")
+                    || queryCustomerPhoneNumberText.getText().contains("Phone Number")) {
+                errorBox("No Selection/Search Criteria was made! Please enter a name or number", "Video Search Error");
+            }
+            else if ( firstnameN > 0 && lastnameN > 0 ) {
                 setCustomerQuery(0,firstname, lastname, "");
             }
             else if ( firstnameN > 0 && lastnameN <= 0){
@@ -1440,6 +1490,10 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 setCustomerQuery(0,"", "", phone);
             }
             
+            else {
+                errorBox("Plese fill out First/Last name or a Phone number", "Video Search Error");
+            }
+            
             //errorBox("No selection was made! Cannot edit.", "Video Search Error");
             //return;
         }
@@ -1447,23 +1501,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         else {
             //selectedRowIndex = queryCustomerTableList.getSelectedRow();
             String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
-            //setCustomerQuery(Integer.parseInt(selectedString),"","","");
-            System.out.println(selectedString);
-            System.out.println(selectedRowIndex);
-            ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, Integer.parseInt(selectedString), null, null, null);
-			queryCustomerTableList.getSelectionModel().clearSelection();
-			for(Customer customer : queryTheCustomer)
-			{
-				queryCustomerZipText.setText(customer.m_zipCode);
-				queryCustomerStateText.setText(customer.m_state);
-				queryCustomerCityText.setText(customer.m_city);
-				queryCustomerStreetAddressText.setText(customer.m_streetAddress);
-				queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
-				queryCustomerFirstNameText.setText(customer.m_firstName);
-				queryCustomerLastNameText.setText(customer.m_lastName);
-				queryCustomerIDText.setText(String.valueOf(customer.m_id));
+            setCustomerQuery(Integer.parseInt(selectedString),"","","");
             
-			}
         }
         
         
@@ -1692,6 +1731,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                         //return;
                     }
                 }
+                infoBox("No matches, please try again","Video Search Information");
             }
             
             else {
@@ -1709,24 +1749,59 @@ public class VideoManagementSystem extends javax.swing.JFrame {
          
         }
     }//GEN-LAST:event_queryMovieSearchButtonActionPerformed
-
+    public void setCustomerQuery(int ID, String First, String Last, String Number) {
+        if (First.equals("")){
+            First=null;
+        }
+        if (Last.equals("")){
+            Last=null;
+        }
+        if (Number.equals("")){
+            Number=null;
+        }
+        
+	ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, ID, First, Last, Number);
+	queryCustomerTableList.getSelectionModel().clearSelection();
+        if (queryTheCustomer.isEmpty()) {
+            infoBox("No search match, Please try again", "Customer Query Information");
+        }
+        else {
+            for(Customer customer : queryTheCustomer)
+            {
+                queryCustomerZipText.setText(customer.m_zipCode);
+                queryCustomerStateText.setText(customer.m_state);
+                queryCustomerCityText.setText(customer.m_city);
+                queryCustomerStreetAddressText.setText(customer.m_streetAddress);
+                queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
+                queryCustomerFirstNameText.setText(customer.m_firstName);
+                queryCustomerLastNameText.setText(customer.m_lastName);
+                queryCustomerIDText.setText(String.valueOf(customer.m_id));
+            
+            }
+        }
+    }    
     public void setMovieQuery(int ID, String title)
     {
        
         ArrayList<Video> queryTheVideo = m_databaseManager.searchVideos(true, ID , title, null, null, null, null, null);
-        for(Video video : queryTheVideo)
-            {
-                //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
-                queryMovieDirectorText.setText(video.m_director);
-                queryMovieLengthText.setText(video.m_length);
-                queryMovieRatingText.setText(video.m_rating);
-                queryMovieTitleText.setText(video.m_title);
-                queryMovieYearText.setText(video.m_year);
-                queryMovieIDText.setText(String.valueOf(video.m_totalNumberOfMovies));
-                queryMovieGenreText.setText(video.m_type);
-                queryMovieNumberText.setText(String.valueOf(video.m_id));
+        if ( queryTheVideo.isEmpty() ) {
+            infoBox("No search results matched, please try again.", "Video Query Information");
+        }
+        else {
+            for(Video video : queryTheVideo)
+                {
+                    //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
+                    queryMovieDirectorText.setText(video.m_director);
+                    queryMovieLengthText.setText(video.m_length);
+                    queryMovieRatingText.setText(video.m_rating);
+                    queryMovieTitleText.setText(video.m_title);
+                    queryMovieYearText.setText(video.m_year);
+                    queryMovieIDText.setText(String.valueOf(video.m_totalNumberOfMovies));
+                    queryMovieGenreText.setText(video.m_type);
+                    queryMovieNumberText.setText(String.valueOf(video.m_id));
             
-            }
+                }
+        }
     }
     private void removeMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieButtonActionPerformed
         // TODO More logic yo:
@@ -1879,6 +1954,64 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_queryMovieTitleTextMouseClicked
+
+    private void queryCustomerFirstNameTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryCustomerFirstNameTextMouseClicked
+        if ( queryCustomerFirstNameText.getText().contains("First Name And")){
+            queryCustomerFirstNameText.setText("");
+            queryCustomerLastNameText.setText("");
+            queryCustomerPhoneNumberText.setText("");
+            queryCustomerStreetAddressText.setText("");
+        }
+    }//GEN-LAST:event_queryCustomerFirstNameTextMouseClicked
+
+    private void queryCustomerLastNameTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryCustomerLastNameTextMouseClicked
+        if ( queryCustomerLastNameText.getText().contains("Last Name OR")){
+            queryCustomerFirstNameText.setText("");
+            queryCustomerLastNameText.setText("");
+            queryCustomerPhoneNumberText.setText("");
+            queryCustomerStreetAddressText.setText("");
+        }
+    }//GEN-LAST:event_queryCustomerLastNameTextMouseClicked
+
+    private void queryCustomerPhoneNumberTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryCustomerPhoneNumberTextMouseClicked
+        if ( queryCustomerPhoneNumberText.getText().contains("Phone Number")){
+            queryCustomerFirstNameText.setText("");
+            queryCustomerLastNameText.setText("");
+            queryCustomerPhoneNumberText.setText("");
+            queryCustomerStreetAddressText.setText("");
+        }
+    }//GEN-LAST:event_queryCustomerPhoneNumberTextMouseClicked
+
+    private void queryMovieClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieClearButtonActionPerformed
+        queryMovieDirectorText.setText("");
+        queryMovieLengthText.setText("");
+        queryMovieRatingText.setText("");
+        queryMovieTitleText.setText("");
+        queryMovieYearText.setText("");
+        queryMovieIDText.setText("");
+        queryMovieGenreText.setText("");
+        queryMovieNumberText.setText("");        
+    }//GEN-LAST:event_queryMovieClearButtonActionPerformed
+
+    private void queryCustomerClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerClearButtonActionPerformed
+        queryCustomerZipText.setText("");
+        queryCustomerStateText.setText("");
+        queryCustomerCityText.setText("");
+        queryCustomerStreetAddressText.setText("");
+        queryCustomerPhoneNumberText.setText("");
+        queryCustomerFirstNameText.setText("");
+        queryCustomerLastNameText.setText("");
+        queryCustomerIDText.setText("");        
+    }//GEN-LAST:event_queryCustomerClearButtonActionPerformed
+
+    private void queryCustomerStreetAddressTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryCustomerStreetAddressTextMouseClicked
+        if ( queryCustomerStreetAddressText.getText().contains("OR Select From List")){
+            queryCustomerFirstNameText.setText("");
+            queryCustomerLastNameText.setText("");
+            queryCustomerPhoneNumberText.setText("");
+            queryCustomerStreetAddressText.setText("");
+        }
+    }//GEN-LAST:event_queryCustomerStreetAddressTextMouseClicked
     
     public void updateDropDowns() {
         removeCustomerDropDownList.removeAllItems();
@@ -2305,32 +2438,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
     }
     
-    public void setCustomerQuery(int ID, String First, String Last, String Number) {
-        if (First.length() == 0){
-            First=null;
-        }
-        else if (Last.length() == 0){
-            Last=null;
-        }
-        else if (Number.length() == 0){
-            Number=null;
-        }
-        
-	ArrayList<Customer> queryTheCustomer = m_databaseManager.searchCustomers(true, ID, First, Last, Number);
-	queryCustomerTableList.getSelectionModel().clearSelection();
-	for(Customer customer : queryTheCustomer)
-	{
-            queryCustomerZipText.setText(customer.m_zipCode);
-            queryCustomerStateText.setText(customer.m_state);
-            queryCustomerCityText.setText(customer.m_city);
-            queryCustomerStreetAddressText.setText(customer.m_streetAddress);
-            queryCustomerPhoneNumberText.setText(customer.m_phoneNumber);
-            queryCustomerFirstNameText.setText(customer.m_firstName);
-            queryCustomerLastNameText.setText(customer.m_lastName);
-            queryCustomerIDText.setText(String.valueOf(customer.m_id));
-            
-        }
-    }    
+
     ///////////////////////////////////////////////////////////////////
     // END GUI FUNCTIONS
     //
@@ -2393,6 +2501,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JPanel movieRemove;
     private javax.swing.JLabel queryCustomerCityLabel;
     private javax.swing.JTextField queryCustomerCityText;
+    private javax.swing.JButton queryCustomerClearButton;
     private javax.swing.JButton queryCustomerEditButton;
     private javax.swing.JLabel queryCustomerFirstNameLabel;
     private javax.swing.JTextField queryCustomerFirstNameText;
@@ -2413,6 +2522,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private javax.swing.JScrollPane queryCustomerTablePane2;
     private javax.swing.JLabel queryCustomerZipLabel;
     private javax.swing.JTextField queryCustomerZipText;
+    private javax.swing.JButton queryMovieClearButton;
     private javax.swing.JLabel queryMovieDirectorLabel;
     private javax.swing.JTextField queryMovieDirectorText;
     private javax.swing.JLabel queryMovieGenreLabel;
