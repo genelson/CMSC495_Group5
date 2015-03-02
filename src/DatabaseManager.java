@@ -28,6 +28,9 @@ DATE                NAME                    CHANGE DESCRIPTION
 2/16/15             Georgia Nelson          File created.
 2/19/15             Georgia Nelson          Modifying sort of video search.
 2/24/15             Georgia Nelson          Removing late fees references.
+2/25/15             Roy Burke               Adding getRentalTransactions
+3/2/15              Georgia Nelson          Fixing bug with customer and video
+                                            removal when rentals exist.
 */
 
 public class DatabaseManager 
@@ -785,10 +788,12 @@ public class DatabaseManager
             return DbResult.DB_ERR_NO_RECORD;
         }
         
-        /*
-        //TODO: Now check that there are no outstanding rentals on this video.
-        //Sprint 2 Functionality (gnelson)
-        */
+        // Now check that there are no outstanding rentals on this video.
+        ArrayList<Rental> outstandingRentals = getRentalTransactions(id, 0);
+        if(!outstandingRentals.isEmpty())
+        {
+            return DbResult.DB_ERR_HAS_RENTALS;
+        }
         
         // Create database objects to manage connectivity and querying
         Connection conn = null;
@@ -856,12 +861,14 @@ public class DatabaseManager
             return DbResult.DB_ERR_NO_RECORD;
         }
         
-        /*
-        //TODO: Now check that there are no outstanding rentals
-        //      on this customer before deleting. Can check by pulling the
-        //      rental transactions and seeing if any are there at all and open.
-        //Sprint 2 Functionality (gnelson)
-        */
+        // Now check that there are no outstanding rentals
+        // on this customer before deleting. Can check by pulling the
+        // rental transactions and seeing if any are there at all and open.
+        ArrayList<Rental> outstandingRentals = getRentalTransactions(0, id);
+        if(!outstandingRentals.isEmpty())
+        {
+            return DbResult.DB_ERR_HAS_RENTALS;            
+        }
         
         // Create database objects to manage connectivity and querying
         Connection conn = null;
@@ -1003,16 +1010,7 @@ public class DatabaseManager
                 // Log any errors
                 Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);                
             }
-        }        
-        
-        //TODO - Sprint 2 Functionality (gnelson)
-        // 1. Build a search very similar to the Customer and Video searches.
-        // 2. If video ID is 0, leave it out as a search param.
-        // 3. If Customer ID is 0, leave it out as a search param.
-        // 4. If both are 0, just do a very simple SELECT * FROM statement.
-        // 5. Iterate the query results and create new Rental objects for each
-        // 6. Add them to the list
-        // 7. Return the list
+        }
         
         return rentals;
     }
