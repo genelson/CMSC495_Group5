@@ -17,6 +17,7 @@ DATE                NAME                    CHANGE DESCRIPTION
 2/24/15             Georgia Nelson          Removing late fees references
 2/29/15             Larry Barker            Polishing search/edit functionality
 3/2/15              Georgia Nelson          Polishing error messages on remove functionality
+3/3/15              Larry Barker            Cleaned up 200 lines of unused code in jtables
 */
 
 import java.util.ArrayList;
