@@ -46,20 +46,19 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         updateDropDowns();
         updateMovieDropDowns();
         updateRentalTransactionsTable();
-        //updateQueryMovieList();
-        
-        
-        //queryMovieTableList.add("Bob", queryMovieTableList.getColumn(Title));
+       
     }
 
     public static void errorBox(String theMessage, String titleBar)
     {
+        //Error message for failures
         JOptionPane.showMessageDialog(null, theMessage, "ERROR: " + titleBar, JOptionPane.ERROR_MESSAGE);
         
     }
     
     public static void infoBox(String theMessage, String titleBar)
     {
+        //info message for info notes
         JOptionPane.showMessageDialog(null, theMessage, "Informational: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
         
     }
@@ -1168,19 +1167,17 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
      
     private void addCustomerFirstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerFirstNameTextActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_addCustomerFirstNameTextActionPerformed
 
     private void removeCustomerDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCustomerDeleteButtonActionPerformed
-        // TODO More logic yo:
+        // Splice the string to get the ID number
         String selectedItem = (String)removeCustomerDropDownList.getSelectedItem();
         String[] splitingHairs = selectedItem.split(":");
-        
-        //System.out.println(splitingHairs[1]);
       
         if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Customer '" + splitingHairs[0] + "'?", "WARNING",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
-            //WAX THE CUSTOMER....RAWR
+            //Delete the customer
             removeCustomers(splitingHairs[0], Integer.parseInt(splitingHairs[1]));
             
             // ----- Lets clean up our mess and Rebuild our List
@@ -1188,34 +1185,32 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         } 
         
         else {
-            // LETS GET THE HELL OUTA HERE!!!
+            // Exit on no
         }
     }//GEN-LAST:event_removeCustomerDeleteButtonActionPerformed
 
     private void addCustomerStreetAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerStreetAddressTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_addCustomerStreetAddressTextActionPerformed
 
     private void addCustomerCityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerCityTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_addCustomerCityTextActionPerformed
 
     private void queryCustomerFirstNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerFirstNameTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_queryCustomerFirstNameTextActionPerformed
 
     private void addMovieTitleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieTitleTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_addMovieTitleTextActionPerformed
 
     private void queryMovieIDTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieIDTextActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_queryMovieIDTextActionPerformed
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-        // Testing error popup
-        //errorBox("But it could be worse", "This error sucks ass");
-        //runTests();
+        //Set variables
         String Lastname = addCustomerLastNameText.getText();
         String Firstname = addCustomerFirstNameText.getText();
         String Phone = addCustomerPhoneNumberText.getText();
@@ -1223,7 +1218,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         String City = addCustomerCityText.getText();
         String State = addCustomerStateText.getText();
         String Zip = addCustomerZipText.getText();
-        
+        //Test that the fields meet requirements
         if (addCustomerLastNameText.getText().length()==0 || addCustomerLastNameText.getText().matches("^[ ]+") ) {
             errorBox("Please Enter Last Name", "Add Customer Error");
         }
@@ -1253,6 +1248,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
                         
         else {
+        //add the customer
         addCustomers(Firstname,
                 Lastname,
                 Street,
@@ -1275,9 +1271,9 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void queryCustomerSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerSearchButtonActionPerformed
-        // TODO Errors on selected a empty row
+        //Define variables
         int selectedRowIndex = queryCustomerTableList.getSelectedRow();
-        //System.out.println(selectedRowIndex);
+        //If user did not select from the list
         if(selectedRowIndex < 0)
         {
             String firstname = queryCustomerFirstNameText.getText();
@@ -1309,12 +1305,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 errorBox("Plese fill out First/Last name or a Phone number", "Video Search Error");
             }
             
-            //errorBox("No selection was made! Cannot edit.", "Video Search Error");
-            //return;
+
         }
-        //int selectedColumnIndex = queryMovieTableList.getSelectedColumn();
+
         else {
-            //selectedRowIndex = queryCustomerTableList.getSelectedRow();
+            //do a search from selection
             String selectedString = (String) queryCustomerTableList.getModel().getValueAt(selectedRowIndex,0);
             setCustomerQuery(Integer.parseInt(selectedString),"","","");
             
@@ -1324,7 +1319,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_queryCustomerSearchButtonActionPerformed
 
     private void queryCustomerEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerEditButtonActionPerformed
-        //TODO
+        //verify selection then set variables
         if ( queryCustomerIDText.getText().length() == 0){
             errorBox("No selection was made! Cannot edit.", "Video Search Error");
             return;
@@ -1338,10 +1333,8 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             String Zip = queryCustomerZipText.getText();
             String ID = queryCustomerIDText.getText(); 
             int customerID =Integer.parseInt(ID);
-            //System.out.println(customerID);
-        // Customer ID to make changes
-      
-        
+     
+        //Test fields for requirements
         if (queryCustomerLastNameText.getText().length()==0 || queryCustomerLastNameText.getText().matches("^[ ]+") ) {
             errorBox("Please Enter Last Name", "Edit Customer Error");
         }
@@ -1370,7 +1363,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             errorBox("Please Enter Zip Code, or verify zipcode is 5 digits", "Edit Customer Error");
         }
         else {
-            // Lets edit the movie....RAWR
+            // edit the movie
             editCustomer(customerID,
                 Lastname,
                 Firstname,
@@ -1380,7 +1373,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 Zip,
                 Phone);
             
-            //Should be good yes? Rebuild the Lists!! Clean the shiz!!!
+            //Rebuild the Lists/Clean fields
             queryCustomerZipText.setText("");
             queryCustomerStateText.setText("");
             queryCustomerCityText.setText("");
@@ -1394,7 +1387,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_queryCustomerEditButtonActionPerformed
 
     private void queryMovieSaveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSaveChangesButtonActionPerformed
-        // TODO                
+        //Check for selection, set variables      
         if ( queryMovieNumberText.getText().length() == 0){
             errorBox("No selection was made! Cannot edit.", "Video Search Error");
             return;
@@ -1412,7 +1405,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         int ID = Integer.parseInt(IDtmp);
         int newCount = Integer.parseInt(Count);
         
-        
+        //Check fields requirements
         if (queryMovieDirectorText.getText().length() == 0 || queryMovieDirectorText.getText().matches("^[ ]+")){
             errorBox("Please Enter Movie Director", "Video Add Error");
         }          
@@ -1429,7 +1422,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             errorBox("Please Enter amount of Movies. Must be a number not exceeding 99", "Video Add Error");
         }
         else {
-            // Lets edit the movie....RAWR
+            // Lets edit the movie
             editVideo(ID,
                     Director,
                     Length,
@@ -1439,7 +1432,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                     Genre,
                     Year);
             
-            //Should be good yes? Rebuild the Lists!! Clean the shiz!!!
+            //rebuild lists and clean up fields
             queryMovieTableList.getSelectionModel().clearSelection();
             queryMovieDirectorText.setText("");
             queryMovieLengthText.setText("");
@@ -1511,34 +1504,30 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     private void queryMovieSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryMovieSearchButtonActionPerformed
         
         int selectedRowIndex = queryMovieTableList.getSelectedRow();
+        //if user doesnt make a selection
         if(selectedRowIndex < 0)
         {
-
+            
             int TitleN = queryMovieTitleText.getText().length();
             String Title = queryMovieTitleText.getText();
             String testText = "Enter Movie Title/Select From List";
 
             if ( TitleN > 0 && ! queryMovieTitleText.getText().contains(testText)) {
-                //setMovieQuery(Title);
-                
+
                 int lastRow = queryMovieTableList.convertRowIndexToView(queryMovieTableList.getRowCount() -1);
                 
                 for (int i=0; i <= lastRow; i++){
                     
                     String theValue = (String)queryMovieTableList.getModel().getValueAt(i, 1);
-                    //System.out.println(theValue);
+            
                     if ( theValue.toLowerCase().contains(Title.toLowerCase())){
-                        //System.out.println(theValue);
-                        //queryMovieTableList.setRowSelectionInterval(i, i);
                         setMovieQuery(0, theValue);
                         queryMovieTableList.clearSelection();
                         return;
                         
                     }
                     else {
-                        //infoBox("No matches, please try again","Video Search Information");
                         queryMovieTableList.clearSelection();
-                        //return;
                     }
                 }
                 infoBox("No matches, please try again","Video Search Information");
@@ -1550,7 +1539,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
             }
 
         }
-        
+        // search from user selection
         else {
             String selectedString = (String) queryMovieTableList.getModel().getValueAt(selectedRowIndex,0);
             setMovieQuery(Integer.parseInt(selectedString), null);
@@ -1560,6 +1549,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_queryMovieSearchButtonActionPerformed
     public void setCustomerQuery(int ID, String First, String Last, String Number) {
+        //Customer search by field function
         if (First.equals("")){
             First=null;
         }
@@ -1593,6 +1583,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     
     public void setMovieQuery(int ID, String title)
     {       
+        //search for movies and set the fields
         ArrayList<Video> queryTheVideo = m_databaseManager.searchVideos(true, ID , title, null, null, null, null, null);
         if ( queryTheVideo.isEmpty() ) {
             infoBox("No search results matched, please try again.", "Video Query Information");
@@ -1613,23 +1604,19 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }
     
     private void removeMovieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieButtonActionPerformed
-        // TODO More logic yo:
+        //get the id
         String selectedItem = (String)removeMovieComboBox.getSelectedItem();
         String[] splitingHairs = selectedItem.split(":");
-        
-        //System.out.println(splitingHairs[1]);
-      
+
         if (JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the Movie '" + splitingHairs[0] + "'?", "WARNING",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            
-            //WAX THE Movie....RAWR
+
             removeVideo(splitingHairs[0], Integer.parseInt(splitingHairs[1]));
-            
-            // ----- Lets clean up our mess and Rebuild our List
+
             updateMovieDropDowns();
         } 
         
         else {
-            // LETS GET THE HELL OUTA HERE!!!
+
         }
     }//GEN-LAST:event_removeMovieButtonActionPerformed
 
@@ -1688,19 +1675,19 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_addMovieButtonActionPerformed
 
     private void removeCustomerDropDownListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCustomerDropDownListActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_removeCustomerDropDownListActionPerformed
 
     private void removeMovieComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMovieComboBoxActionPerformed
-        //
+
     }//GEN-LAST:event_removeMovieComboBoxActionPerformed
 
     private void queryCustomerStreetAddressTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerStreetAddressTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_queryCustomerStreetAddressTextActionPerformed
 
     private void queryCustomerCityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queryCustomerCityTextActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_queryCustomerCityTextActionPerformed
 
     private void transactionsCheckOutSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsCheckOutSearchButtonActionPerformed
@@ -1740,7 +1727,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_transactionsCheckInButtonActionPerformed
 
     private void queryMovieTitleTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queryMovieTitleTextMouseClicked
-        // TODO 
+
         String testText = "Enter Movie Title/Select From List";
         if ( queryMovieTitleText.getText().contains(testText)){
             queryMovieTitleText.setText("");
@@ -1811,7 +1798,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         clearCustomerTable();
         ArrayList<Customer> queryCustomerTest = m_databaseManager.searchCustomers(false, 0, null, null, null);
         for(Customer customer : queryCustomerTest) {
-            //System.out.println("        Customer: [" + customer.m_id + "] " + customer.m_firstName + " " + customer.m_lastName + " (" + customer.m_phoneNumber + ")");
+
             removeCustomerDropDownList.addItem(customer.m_firstName + " " + customer.m_lastName + ":" + customer.m_id);
             
             String customerId = String.valueOf(customer.m_id);
@@ -1827,7 +1814,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         ArrayList<Video> queryVideoTest = m_databaseManager.searchVideos(false, 0, null, null, null, null, null, null);
         for(Video video : queryVideoTest)
         {
-            //System.out.println("        Video: [" + video.m_id + "] " + video.m_title + " (" + video.m_year + ")");
+
             removeMovieComboBox.addItem(video.m_title + ":" + video.m_id);
             
             String videoId = String.valueOf(video.m_id);
@@ -2017,7 +2004,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
                 "travin_cmsc495",
                 3306);
 
-        //System.out.println(queryCustomerTest.toArray());
+        
             /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -2050,15 +2037,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         });
     }
     
-    ///////////////////////////////////////////////////////////////////
-    // START GUI FUNCTIONS
-    //
-    // Functions for the GUI to be able to access.
-    // These are for the button actions and
-    // for the lists/drop down menus
-    //
-    //
-    ///////////////////////////////////////////////////////////////////
     
     public static void addCustomers(String firstName,
             String lastName,
@@ -2076,7 +2054,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         if(resultCustomerAddOk != DatabaseManager.DbResult.DB_OK)
         {
             // A error
-            errorBox("Look into VideoManagementSystem.addCustomers()", "Some type of add user failsauce");
+            errorBox("Error editing the Customer", "Customer Add Error");
             
         } 
         
@@ -2115,9 +2093,7 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         for(Customer customer : videoEdit)
             {
                 originalCustomer = new Customer(customer);
-                //System.out.println(originalCustomer.m_streetAddress);
 
-                
             }
         
         originalCustomer.m_lastName = Last;
@@ -2131,12 +2107,11 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         DatabaseManager.DbResult resultCustomerEdit = m_databaseManager.updateCustomer(originalCustomer);
         if(resultCustomerEdit != DatabaseManager.DbResult.DB_OK)
         {
-            //System.out.println("    Video Edit Error: This video already exists! Change some of the data!");
-            errorBox("There was an issue editing the customer look at editCustomer()","Customer Edit Error");
+            errorBox("There was an editing the customer","Customer Edit Error");
         }
         else
         {
-            infoBox("The Customer" + "'" + First + " " + Last + "' was edited successfully!", "Customer Edit Information");
+            infoBox("The Customer " + "'" + First + " " + Last + "' was edited successfully!", "Customer Edit Information");
         
         }
     }
@@ -2153,19 +2128,12 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         
         if(resultVideoAddOk != DatabaseManager.DbResult.DB_OK)
         {
-            //System.out.println("    Video Add Error: Video already exists.");
-            errorBox("Look into VideoManagementSystem.addVideo()", "Some type of add video failsauce");
-            
-            // Get this video, store it as the original for now (we've likely run this
-            // hard-coded test already and don't want to purge the database to test
-            // the edits below)
+            errorBox("Unable to add Video", "Video Add Error");
             
         }
         else
         {
-            //System.out.println("    Video successfully added:");
-            infoBox( "'" + title + "' added sucessfully!", "Sucessfull");
-        
+            infoBox( "'" + title + "' added sucessfully!", "Video Add Information");
         }
     }
     
@@ -2222,15 +2190,6 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         
         }
     }
-    
-
-    ///////////////////////////////////////////////////////////////////
-    // END GUI FUNCTIONS
-    //
-    //
-    //
-    //
-    ///////////////////////////////////////////////////////////////////
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addCustomerAddressLabel;
