@@ -18,6 +18,7 @@ DATE                NAME                    CHANGE DESCRIPTION
 2/29/15             Larry Barker            Polishing search/edit functionality
 3/2/15              Georgia Nelson          Polishing error messages on remove functionality
 3/3/15              Larry Barker            Cleaned up 200 lines of unused code in jtables
+3/3/15              Georgia Nelson          Fixed an error on the check out screen where alpha chars could be used for the customer ID
 */
 
 import java.util.ArrayList;
@@ -1829,6 +1830,16 @@ public class VideoManagementSystem extends javax.swing.JFrame {
         if(customerIDText == null || customerIDText.length() < 1 || customerIDText.compareTo("0") == 0)
         {
             return false;
+        }
+        else
+        {
+            for(char c : customerIDText.toCharArray())
+            {
+                if(!Character.isDigit(c))
+                {
+                    return false;
+                }
+            }
         }
         
         return true;
